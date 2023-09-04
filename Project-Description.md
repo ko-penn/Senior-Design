@@ -1,7 +1,7 @@
 # Project Description
 
 ## Team Name
-Weekend Wariors
+Weekend Warriors
 ## Team Members
 - Nicholas Ferko ([Ferkond@mail.uc.edu](mailto:ferkond@mail.uc.edu)) 
 - Samir Idris ([idrissa@mail.uc.edu](mailto:idrissa@mail.uc.edu))
