@@ -11,17 +11,17 @@ Time of Employment: May 2023 – Aug 2023
 
 
 **GE Aerospace: ADS Cyber Security Cloud Architect (1 semester)**<br>
-Time of Employment: Jan 2023 – May 2023
+Time of Employment: Jan 2023 – May 2023 <br>
 - Modified the architecture of an open-source application to deploy in AWS
 - Set a standard process for customer engagement
 
 **GE Aerospace: : Secure Collaboration UX Tester  (1 semester)**<br>
-Time of Employment: May 2022 – Aug 2022
+Time of Employment: May 2022 – Aug 2022 <br>
 - Pitched a solution and started a POC for a security concern that would save ~100K per year
 - Served as a focal for the Professional Development Committee
 
 **Siemens DIS: Software Developer (2.5 semesters)**<br>
-Time of Employment: Jan 2021 – Jan 2022
+Time of Employment: Jan 2021 – Jan 2022 <br>
 - Fixed and created automated test cases for the Solutionlink web-app
 - Developed and fully managed an application for Solutionlink
 
