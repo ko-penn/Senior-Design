@@ -39,7 +39,7 @@ Time of Employment: Jan 2021 – Jan 2022 <br>
 -	Software Development
 
 **Projects Sought:** (In order of interest)
-•	Phone applications mainly implemented business ideas
-•	Cyber security application that helps either detect or mitigate an attack
-•	Applications that need cloud deployment or management
+-	Phone applications mainly implemented business ideas
+-	Cyber security application that helps either detect or mitigate an attack
+-	Applications that need cloud deployment or management
 
