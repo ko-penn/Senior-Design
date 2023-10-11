@@ -1,4 +1,4 @@
-**Faculty Advisor:** Meeting with possible advisor Tuesday 9/12
+**Faculty Advisor:** Prof. Niu (niunn@ucmail.uc.edu)
 
   
 
