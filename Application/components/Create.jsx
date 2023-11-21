@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput } from 'react-native';
 
-export default function Login({childToParent}) {
+export default function Create({childToParent}) {
 
-  const [login, onChangeLogin] = React.useState('');
+  const [email, onChangeEmail] = React.useState('');
+  const [username, onChangeUsername] = React.useState('');
   const [password, onChangePassword] = React.useState('');
 
   return (
@@ -11,9 +12,15 @@ export default function Login({childToParent}) {
       <View style={styles.container}>
         <TextInput
           style={styles.input}
-          onChangeText={onChangeLogin}
-          value={login}
-          placeholder="Login"
+          onChangeText={onChangeEmail}
+          value={email}
+          placeholder="Email"
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeUsername}
+          value={username}
+          placeholder="Username"
         />
         <TextInput
           style={styles.input}
@@ -22,12 +29,10 @@ export default function Login({childToParent}) {
           placeholder="Password"
         />
         <Button onPress = {() => childToParent("start")}
-          title="Login"
+          title='Create'
           color="#841584"
-          accessibilityLabel="Logging you in" />
-        <Text style={styles.createtext} onPress={() => childToParent("accountpress")}>
-          Create new account
-        </Text>
+          accessibilityLabel="Creating Account"
+        />
       </View>
     </>
   );
@@ -42,12 +47,9 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    margin: 10,
     width: 200,
+    margin: 12,
     borderWidth: 1,
-    padding: 5,
-  },
-  createtext: {
-    textDecorationLine: 'underline',
+    padding: 10,
   },
 });
