@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Alert, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 
 export default function Create({childToParent}) {
 
@@ -28,11 +28,18 @@ export default function Create({childToParent}) {
           value={password}
           placeholder="Password"
         />
-        <Button onPress = {() => childToParent("start")}
-          title='Create'
-          color="#841584"
+        <TouchableOpacity onPress={() => childToParent("start")}
+        style={styles.createButton}
           accessibilityLabel="Creating Account"
-        />
+        >
+          <Text style={styles.loginText}>Create</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => childToParent("login")}
+        style={styles.createButton}
+          accessibilityLabel="Cancel"
+        >
+          <Text style={styles.loginText}>Cancel</Text>
+        </TouchableOpacity>
       </View>
     </>
   );
@@ -47,9 +54,23 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    width: 200,
-    margin: 12,
+    margin: 10,
+    width: 300,
     borderWidth: 1,
-    padding: 10,
+    borderRadius:10,
+    padding: 5,
   },
+  loginText: {
+    color:'#fff',
+    textAlign: 'center',
+    fontWeight: '700',
+    fontSize: 16
+  },
+  createButton: {
+    backgroundColor:'#841584', 
+    padding:10, 
+    borderRadius:20,
+    marginBottom:10,
+    width:300
+  }
 });
