@@ -4,19 +4,19 @@
 
 3. Setup Kanban board - Samir
 
-4. Design UI Prototypes - Kody 
+4. Design UI Prototypes - Kody & Nick
 
 5. Implement user found authentication - Kevin 
 
-6. Test UI with users - Kevin
+6. Test UI with users - Kody & Nick
 
-7. Create cloud storage for the application - Nick
+7. Create cloud storage for the application - Kevin & Samir
 
-8. Refine UI utilizing user feedback - Nick
+8. Refine UI utilizing user feedback - Kody & Nick
 
 9. Implement user physical description/picture input - Kody
 
-10. Create cloud architecture/find template (terraform) - Samir
+10. Create cloud architecture/find template (terraform) - Kevin & Samir
 
 11. Research Security best practices for an application like ours - Nick
 
@@ -24,7 +24,7 @@
 
 13. Determine a list of possible features - Kevin
 
-14. Implement pairing up of users based on location - Samir
+14. Implement pairing up of users based on location - Kevin & Samir
 
 15. Perform cross-platform compatibility testing - Kody
 
