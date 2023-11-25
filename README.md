@@ -20,7 +20,7 @@ Design Diagrams:
 
 [ABET Concerns Essay](Project%20Constraints.md)
 
-[Slideshow](Senior%20Design%20Fall%20Presentation)
+[Slideshow](Senior%20Design%20Fall%20Presentation.pdf)
 
 Self-Assessment Essays:
 - [Kevin Slyh](Individual_Assessments/Kevin_Slyh_Individual_Assessment.md)
