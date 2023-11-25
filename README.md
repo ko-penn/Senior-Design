@@ -7,6 +7,8 @@ Team Names and Professional Biographies:
 - [Samir Idris](Professional_Biographies/Samir_Idris_Professional_Biography.md)
 - Faculty Advisor: Professor Nan Niu
 
+Project Abstract: This application will serve as a networking tool for instances such as icebreakers, social events, or conferences. The primary focus of the application is to connect people both virtually and physically in a random manner. The application will be available on both Android and IOS devices to maximize our potential users. 
+
 [Project Description](Details.md)
 
 [User Stories](User_Stories.md)\
