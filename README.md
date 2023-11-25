@@ -15,7 +15,7 @@ Design Diagrams:
 - [Level 1](Design_Diagrams/D1.pdf)
 - [Level 2](Design_Diagrams/D2.pdf)
 
-[Task List](Task_list.md)\
+[Task List](Task_List.md)\
 [Timeline and Effort Matrix](Milestone%20Effort%20and%20Timeline.pdf)
 
 [ABET Concerns Essay](Project%20Constraints.md)
