@@ -33,4 +33,4 @@ Self-Assessment Essays:
 Budget:
 There have been no expenses to date. There may be some in the future depending on how intensive our cloud usage ends up being.
 
-Appendix:
+Appendix: [Meeting Notes](Meeting_Notes/Meeting_Notes.md)
