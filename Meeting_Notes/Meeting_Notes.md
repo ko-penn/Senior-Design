@@ -292,3 +292,28 @@ Items accomplished this meeting:
 * Kody and Nick pushed code changes to the login ui which included the login, create account, and first page after logging in.
 
 Duration: 3 hours
+
+**11-29-23**
+
+Tasks for this week:
+
+Assignment #11 - Advisor Report - Professor Niu
+
+Total Time spent individually since last meeting:
+
+Kevin - 1 hrs
+
+Kody - 1 hrs
+
+Nick - 1 hr
+
+Samir - 1 hrs
+
+Items accomplished this meeting:
+
+
+
+* Dicsussed UI designs
+* Discussed AWS setup hickups
+
+Duration: 1 hour
