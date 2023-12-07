@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, Image } from 'react-native';
 
-export default function Start({childToParent}) {
+export default function Start() {
 
   const [description, onChangeDescription] = React.useState('');
 

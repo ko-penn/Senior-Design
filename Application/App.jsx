@@ -6,13 +6,33 @@ import { useState } from 'react';
 import Login from './components/Login';
 import Start from './components/Start';
 import Create from './components/Create';
-import Hamburger from './components/Hamburger';
 import Settings from './components/Settings';
 import Profile from './components/Profile';
+/*https://reactnavigation.org/docs/drawer-based-navigation
+https://reactnavigation.org/docs/drawer-navigator/#installation*/
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
 
+function HomeScreen({ navigation }) {
+  return (
+    <Start></Start>
+  );
+}
 
+function ProfileScreen({ navigation }) {
+  return (
+    <Profile></Profile>
+  );
+}
+
+function SettingsScreen({ navigation }) {
+  return (
+    <Settings></Settings>
+  );
+}
 
 export default function App() {
+  const Drawer = createDrawerNavigator();
   const [data, setData] = useState('login');
   
   const childToParent = (childdata) => {
@@ -23,49 +43,34 @@ export default function App() {
     return (
       <>
         <Login childToParent={childToParent}></Login>
-        <StatusBar style="auto" />
       </>
       
-    );
-  }
-  else if(data==="start"){
-    return (
-      <>
-        <Hamburger></Hamburger>
-        <Start childToParent={childToParent}></Start>
-        <StatusBar style="auto" />
-      </>
     );
   }
   else if(data==="accountpress"){
     return(
       <>
         <Create childToParent={childToParent}></Create>
-        <StatusBar style="auto" />
       </>
     )
   }
-  else if(data==="settings"){
-    return(
+  else if(data==="start"){
+    return (
       <>
-        <Settings></Settings>
-        <StatusBar style="auto" />
+        <NavigationContainer>
+          <Drawer.Navigator initialRouteName="Home">
+            <Drawer.Screen name="Home" component={HomeScreen}/>
+            <Drawer.Screen name="Profile" component={ProfileScreen}/>
+            <Drawer.Screen name="Settings" component={SettingsScreen}/>
+          </Drawer.Navigator>
+        </NavigationContainer>
       </>
-    )
-  }
-  else if(data==="profile"){
-    return(
-      <>
-        <Profile></Profile>
-        <StatusBar style="auto" />
-      </>
-    )
+    );
   }
   else{
     return (
       <>
         <Text>Problemo</Text>
-        <StatusBar style="auto" />
       </>
     );
   } 
