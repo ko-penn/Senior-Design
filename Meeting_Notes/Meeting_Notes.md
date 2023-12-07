@@ -297,6 +297,10 @@ Duration: 3 hours
 
 Tasks for this week:
 
+Test application server connection - Kevin
+
+Perform cross-platform compatibility testing - Kody
+
 Assignment #11 - Advisor Report - Professor Niu
 
 Total Time spent individually since last meeting:
@@ -315,5 +319,30 @@ Items accomplished this meeting:
 
 * Dicsussed UI designs
 * Discussed AWS setup hickups
+
+Duration: 1 hour
+
+**12-7-23**
+
+Tasks for this week:
+
+Implementation of location tracking services for pinpointing user locations - Samir
+
+Total Time spent individually since last meeting:
+
+Kevin - 1 hrs
+
+Kody - 2 hrs
+
+Nick - 2 hr
+
+Samir - 2 hrs
+
+Items accomplished this meeting:
+
+
+
+* Dicsussed UI designs
+* Setup AWS Amplify
 
 Duration: 1 hour
