@@ -1,0 +1,22 @@
+version: 1
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            - nvm use 18
+            - npm install
+            - npx expo install react-native-web@~0.19.6 react-dom@18.2.0
+            - npx expo install @expo/webpack-config@^19.0.0
+        build:
+          commands:
+            - 'npx expo export:web'
+      artifacts:
+        baseDirectory: web-build
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+          - $(npm root --global)/**/*
+    appRoot: Application

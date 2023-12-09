@@ -1,7 +1,7 @@
 **User Stories**
 
- - As a UC club member, I want to meet people from my club, so that I can become more involved.
+ - As a student at UC, I want to meet people in the UC area, so that I can make new friends.
  
-  - As a UC club leader, I want to create a group of members, so that they can play against each other.
+ - As a convention-goer, I want to meet people at the same convention as me, so I enjoy this experience to the fullest.
  
- - As a social media user, I want to connect to my friend, so that I can play against someone I know.
+ - As a farmer living in a rural area, I want to meet other nearby farmers, so that I can borrow their tractors.
