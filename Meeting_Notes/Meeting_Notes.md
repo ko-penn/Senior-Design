@@ -346,3 +346,29 @@ Items accomplished this meeting:
 * Setup AWS Amplify
 
 Duration: 1 hour
+
+**12-13-23**
+
+Tasks for this week:
+
+Fill in task from timeline
+
+Mess around with Amplify's REST API and see if that works with Expo
+
+Total Time spent individually since last meeting:
+
+Kevin - 1 hrs
+
+Kody - 3 hrs
+
+Nick - 3 hr
+
+Samir - 2 hrs
+
+Items accomplished this meeting:
+
+
+
+* Dicsussed AWS Amplify issues
+
+Duration: 2 hours
