@@ -372,3 +372,27 @@ Items accomplished this meeting:
 * Dicsussed AWS Amplify issues
 
 Duration: 2 hours
+
+**12-20-23**
+
+Tasks for this week:
+
+Fill in task from timeline
+
+Total Time spent individually since last meeting:
+
+Kevin - 1 hrs
+
+Kody - 3 hrs
+
+Nick - 3 hr
+
+Samir - 2 hrs
+
+Items accomplished this meeting:
+
+* Cognito demo
+
+* Camera demo
+
+Duration: 30 minutes
