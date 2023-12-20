@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, Alert, TextInput } from 'react-native';
+import { Text } from 'react-native';
 import { useState } from 'react';
 import Login from './components/Login';
 import Start from './components/Start';
@@ -34,7 +33,7 @@ function SettingsScreen({ navigation }) {
 export default function App() {
   const Drawer = createDrawerNavigator();
   const [data, setData] = useState('login');
-  
+
   const childToParent = (childdata) => {
     setData(childdata);
   }
@@ -57,7 +56,7 @@ export default function App() {
   else if(data==="start"){
     return (
       <>
-        <NavigationContainer>
+        <NavigationContainer name='nav'>
           <Drawer.Navigator initialRouteName="Home">
             <Drawer.Screen name="Home" component={HomeScreen}/>
             <Drawer.Screen name="Profile" component={ProfileScreen}/>
