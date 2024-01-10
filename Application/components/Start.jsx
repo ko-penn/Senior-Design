@@ -13,10 +13,6 @@ export default function Start() {
     setPic('true');
   }
 
-  const childToParent2 = (childdata2) => {
-    setPic(childdata2);
-  }
-
   if(pic === 'false'){
     return (
       <View style={styles.container}>
@@ -42,7 +38,7 @@ export default function Start() {
     );
   }
   else{
-    return (<MyCamera childToParent2={childToParent2}></MyCamera>)
+    return (<MyCamera></MyCamera>)
   }
   
 }

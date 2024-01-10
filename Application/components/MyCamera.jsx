@@ -3,14 +3,14 @@ import { StyleSheet, Text, View, Button, SafeAreaView, Image } from 'react-nativ
 import { useState, useEffect, useRef } from 'react';
 /*https://www.youtube.com/watch?v=4WPjWK0MYMI*/
 import { Camera } from 'expo-camera';
-import * as MediaLibrary from 'expo-media-library';
+import { useIsFocused } from '@react-navigation/native';
 
 
-export default function MyCamera() {
+export default function MyCamera(props) {
   let cameraRef = useRef();
   const [hasCameraPermission, sethasCameraPermission] = useState();
-  const [hasMediaLibraryPermission, sethasMediaLibraryPermission] = useState();
   const [photo, setPhoto] = useState();
+  const isFocused = useIsFocused();
 
   useEffect(() => {
     (async () => {
@@ -49,7 +49,7 @@ export default function MyCamera() {
             </SafeAreaView>
           );
     }
-    else if (photo === undefined){
+    else if (photo === undefined && isFocused){
         return(
             <Camera style={styles.container} ref={cameraRef}>
               <View style={styles.buttonContainer}>
