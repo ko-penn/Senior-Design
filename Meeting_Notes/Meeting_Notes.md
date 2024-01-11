@@ -391,8 +391,68 @@ Samir - 2 hrs
 
 Items accomplished this meeting:
 
+
+
 * Cognito demo
 
 * Camera demo
 
 Duration: 30 minutes
+
+**1-11-24**
+
+Tasks for this week:
+
+Assignment #1 - Test Plan - Everyone
+
+Profile and setting pages - Kevin
+
+Figuring out pairing of users using geolocation - Samir and Nick
+
+Websocket sessions - Nick
+
+Page that comes up while game is active - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 0 hrs
+
+Kody - 4 hrs
+
+Nick - 3.5 hr
+
+Samir - 1 hrs
+
+Items accomplished this meeting:
+
+* Writing up test cases
+
+* Everyone joined the Expo group
+
+* Kody completed the Expo group registration and signed Kevin as the group correspondent
+
+Duration: 2 hour
+
+**1-18-24**
+
+Tasks for this week:
+
+Assignment #1 - Test Plan - Everyone
+
+Fill in task from timeline
+
+Total Time spent individually since last meeting:
+
+Kevin - 0 hrs
+
+Kody - 0 hrs
+
+Nick - 0 hr
+
+Samir - 0 hrs
+
+Items accomplished this meeting:
+
+*
+
+Duration: 1 hour
