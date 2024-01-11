@@ -1,11 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import UserPool from "./UserPool";
 
 export default function Create({childToParent}) {
 
   const [email, onChangeEmail] = React.useState('');
   const [username, onChangeUsername] = React.useState('');
   const [password, onChangePassword] = React.useState('');
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+
+    UserPool.signUp(email, password, [], null, (err, data) => {
+        if (err) {
+            console.debug(err);
+        }
+        console.debug(data);
+    });
+  };
 
   return (
     <>
@@ -28,7 +40,7 @@ export default function Create({childToParent}) {
           value={password}
           placeholder="Password"
         />
-        <TouchableOpacity onPress={() => childToParent("start")}
+        <TouchableOpacity onPress={onSubmit}
         style={styles.createButton}
           accessibilityLabel="Creating Account"
         >

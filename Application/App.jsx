@@ -12,6 +12,9 @@ import Profile from './components/Profile';
 https://reactnavigation.org/docs/drawer-navigator/#installation*/
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
+import { Account } from "./components/Account"
+import Status from './components/Status';
+
 
 function HomeScreen({ navigation }) {
   return (
@@ -32,6 +35,10 @@ function SettingsScreen({ navigation }) {
 }
 
 export default function App() {
+
+    // return <div>
+    //   <SignUp></SignUp>
+    // </div>
   const Drawer = createDrawerNavigator();
   const [data, setData] = useState('login');
   
@@ -42,7 +49,10 @@ export default function App() {
   if(data==="login"){
     return (
       <>
-        <Login childToParent={childToParent}></Login>
+        <Account>
+          <Status />
+          <Login childToParent={childToParent}></Login>
+        </Account>
       </>
       
     );
@@ -50,7 +60,9 @@ export default function App() {
   else if(data==="accountpress"){
     return(
       <>
-        <Create childToParent={childToParent}></Create>
+        <Account>
+          <Create childToParent={childToParent}></Create>
+        </Account>
       </>
     )
   }
