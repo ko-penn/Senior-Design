@@ -51,7 +51,7 @@ export default function App() {
       } else {
         console.log('deny')
       }
-      loc = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest, maximumAge: 10000})
+      loc = await Location.getCurrentPositionAsync({maximumAge: 10000})
       setLocation(loc)
       setDist((Math.acos(Math.sin(loc.coords.latitude*0.0174533)*Math.sin(39.134754*0.0174533)+Math.cos(loc.coords.latitude*0.0174533)*Math.cos(39.134754*0.0174533)*Math.cos((-84.514904*0.0174533)-(loc.coords.longitude*0.0174533)))*3963));
     })();
