@@ -39,12 +39,9 @@ export default function App() {
     setData(childdata);
   }
 
-  const [location, setLocation] = useState({})
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
+  const [location, setLocation] = useState(null);
   const [dist, setDist] = useState(null);
 
-  /*const lat1 = parseFloat(JSON.stringify(location.coords.latitude)); const lon1 = parseFloat(JSON.stringify(location.coords.longitude)); setDist(Math.acos(Math.sin(lat1*0.0174533)*Math.sin(39.134754*0.0174533)+Math.cos(lat1*0.0174533)*Math.cos(39.134754*0.0174533)*Math.cos((-84.514904*0.0174533)-(lon1*0.0174533)))*6371*0.621371); */
   /*https://www.youtube.com/watch?v=2q-wgobQ-zQ*/
   useEffect(() => {
     (async() => {
@@ -54,12 +51,9 @@ export default function App() {
       } else {
         console.log('deny')
       }
-      loc = await Location.getCurrentPositionAsync()
-      console.log(loc)
+      loc = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest, maximumAge: 10000})
       setLocation(loc)
-      setLatitude(location.coords.latitude)
-      setLongitude(location.coords.longitude)
-      setDist(Math.acos(Math.sin(latitude*0.0174533)*Math.sin(39.134754*0.0174533)+Math.cos(latitude*0.0174533)*Math.cos(39.134754*0.0174533)*Math.cos((-84.514904*0.0174533)-(longitude*0.0174533)))*6371*0.621371);
+      setDist((Math.acos(Math.sin(loc.coords.latitude*0.0174533)*Math.sin(39.134754*0.0174533)+Math.cos(loc.coords.latitude*0.0174533)*Math.cos(39.134754*0.0174533)*Math.cos((-84.514904*0.0174533)-(loc.coords.longitude*0.0174533)))*3963));
     })();
   }, []);
 
@@ -68,7 +62,7 @@ export default function App() {
     return (
       <>
         <Text></Text>
-        <Text>{((Math.acos(Math.sin(latitude*0.0174533)*Math.sin(39.134754*0.0174533)+Math.cos(latitude*0.0174533)*Math.cos(39.134754*0.0174533)*Math.cos((-84.514904*0.0174533)-(longitude*0.0174533)))*3963)).toString()}</Text>
+        <Text>{dist}</Text>
         <Text>{JSON.stringify(location)}</Text>
         <Login childToParent={childToParent}></Login>
       </>
