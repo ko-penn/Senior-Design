@@ -14,7 +14,7 @@ export default function Login({childToParent}) {
 
     authenticate(email, password)
       .then(data => {
-        console.debug("Logged in!", data);
+        childToParent("start");
       })
       .catch(err => {
         console.error("Failed to login", err);

@@ -15,6 +15,9 @@ export default function Create({childToParent}) {
         if (err) {
             console.debug(err);
         }
+        else{
+          childToParent("login");
+        }
         console.debug(data);
     });
   };
