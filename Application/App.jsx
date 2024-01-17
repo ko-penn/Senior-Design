@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { Text } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { useState, useEffect } from 'react';
 import Login from './components/Login';
 import Start from './components/Start';
@@ -12,6 +13,8 @@ https://reactnavigation.org/docs/drawer-navigator/#installation*/
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import * as Location from 'expo-location';
+import Status from './components/Status';
+import { Account } from "./components/Account"
 
 function HomeScreen({ navigation }) {
   return (
@@ -64,7 +67,10 @@ export default function App() {
         <Text></Text>
         <Text>{dist}</Text>
         <Text>{JSON.stringify(location)}</Text>
-        <Login childToParent={childToParent}></Login>
+        <Account>
+          <Status />
+          <Login childToParent={childToParent}></Login>
+        </Account>
       </>
       
     );
