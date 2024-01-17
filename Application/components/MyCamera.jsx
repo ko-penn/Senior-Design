@@ -4,13 +4,19 @@ import { useState, useEffect, useRef } from 'react';
 /*https://www.youtube.com/watch?v=4WPjWK0MYMI*/
 import { Camera } from 'expo-camera';
 import { useIsFocused } from '@react-navigation/native';
+import Session from './Session';
 
 
-export default function MyCamera(props) {
+export default function MyCamera({picPressed}) {
   let cameraRef = useRef();
   const [hasCameraPermission, sethasCameraPermission] = useState();
   const [photo, setPhoto] = useState();
+  const [sess, setSess] = useState('false');
   const isFocused = useIsFocused();
+
+  const fromSession = (val) => {
+    setSess(val);
+  }
 
   useEffect(() => {
     (async () => {
@@ -37,22 +43,26 @@ export default function MyCamera(props) {
         setPhoto(newPhoto);
     };
 
-    if (photo) {
-        let usePhoto = () => {
-            setPhoto(undefined);
-        };
+    if (photo && sess==='false') {
         return (
             <SafeAreaView style={styles.container}>
               <Image style={styles.preview} source={{ uri: "data:image/jpg;base64," + photo.base64 }} />
-              <Button title="Use" onPress={usePhoto}/>
+              <Button title="Use" onPress={() => setSess("true")}/>
               <Button title="Discard" onPress={() => setPhoto(undefined)} />
             </SafeAreaView>
           );
     }
+    else if (photo && sess) {
+      return (
+          <Session fromSession={fromSession}></Session>
+        );
+  }
     else if (photo === undefined && isFocused){
         return(
+          
             <Camera style={styles.container} ref={cameraRef}>
               <View style={styles.buttonContainer}>
+                <Button title="<-" onPress={() => picPressed("false")} />
                 <Button title="Take Pic" onPress={takePic} />
               </View>
             </Camera>

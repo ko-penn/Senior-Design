@@ -9,14 +9,14 @@ export default function Start() {
   const [description, onChangeDescription] = useState('');
   const [pic, setPic] = useState('false');
 
-  const picPressed = () => {
-    setPic('true');
+  const picPressed = (val) => {
+    setPic(val);
   }
 
   if(pic === 'false'){
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={picPressed}>
+        <TouchableOpacity onPress={() => picPressed("true")}>
           <Image source={require('../assets/Mystery-Man.webp')} style={styles.mysteryMan}></Image>
         </TouchableOpacity>
         <Text>Take a picture of yourself:</Text>
@@ -30,7 +30,7 @@ export default function Start() {
         />
           <TouchableOpacity onPress={() => childToParent("start")}
           style={styles.matchmakeButton}
-            accessibilityLabel="Starting matchmanking"
+            accessibilityLabel="Starting matchmaking"
           >
             <Text style={styles.matchmakeText}>Start Matchmaking</Text>
           </TouchableOpacity>
@@ -38,7 +38,7 @@ export default function Start() {
     );
   }
   else{
-    return (<MyCamera></MyCamera>)
+    return (<MyCamera picPressed={picPressed}></MyCamera>)
   }
   
 }

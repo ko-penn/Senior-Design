@@ -2,7 +2,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, Image } from 'react-native';
 
-export default function Session() {
+export default function Session(setSess={setSess}) {
 
   return (
     <>
