@@ -1,36 +1,46 @@
+import { useState } from 'react';
 import React from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, Image, ImageBackground } from 'react-native';
+import MyCamera from '../components/MyCamera'; 
 
-export default function Start({childToParent}) {
 
-  const [description, onChangeDescription] = React.useState('');
+export default function Start() {
 
-  return (
-    <View style={styles.container}>
-      <Image source={require('../assets/Mystery-Man.webp')} style={styles.mysteryMan}/>
-      <Text>Enter a description of yourself:</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeDescription}
-        value={description}
-        placeholder=""
-      />
-      <Text>--------------- OR ---------------</Text>
-      <Text>Enter a description of yourself:</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeDescription}
-        value={description}
-        placeholder=""
-      />
-        <TouchableOpacity onPress={() => childToParent("start")}
-        style={styles.matchmakeButton}
-          accessibilityLabel="Starting matchmanking"
-        >
-          <Text style={styles.matchmakeText}>Start Matchmaking</Text>
+  const [description, onChangeDescription] = useState('');
+  const [pic, setPic] = useState('false');
+
+  const picPressed = (val) => {
+    setPic(val);
+  }
+
+  if(pic === 'false'){
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity onPress={() => picPressed("true")}>
+          <Image source={require('../assets/Mystery-Man.webp')} style={styles.mysteryMan}></Image>
         </TouchableOpacity>
-    </View>
-  );
+        <Text>Take a picture of yourself:</Text>
+        <Text>--------------- OR ---------------</Text>
+        <Text>Enter a description of yourself:</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeDescription}
+          value={description}
+          placeholder=""
+        />
+          <TouchableOpacity onPress={() => childToParent("start")}
+          style={styles.matchmakeButton}
+            accessibilityLabel="Starting matchmaking"
+          >
+            <Text style={styles.matchmakeText}>Start Matchmaking</Text>
+          </TouchableOpacity>
+      </View>
+    );
+  }
+  else{
+    return (<MyCamera picPressed={picPressed}></MyCamera>)
+  }
+  
 }
 
 const styles = StyleSheet.create({
@@ -64,5 +74,5 @@ const styles = StyleSheet.create({
     borderRadius:20,
     marginBottom:30,
     width:300
-  }
+  },
 });
