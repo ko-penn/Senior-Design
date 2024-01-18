@@ -1,18 +1,33 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
 import { StyleSheet, Text, View, TextInput,TouchableOpacity } from 'react-native';
+import { AccountContext } from "./Account";
 
 export default function Login({childToParent}) {
 
-  const [login, onChangeLogin] = React.useState('');
+  const [email, onChangeEmail] = React.useState('');
   const [password, onChangePassword] = React.useState('');
+
+  const { authenticate } = useContext(AccountContext)
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+
+    authenticate(email, password)
+      .then(data => {
+        childToParent("start");
+      })
+      .catch(err => {
+        console.error("Failed to login", err);
+      })
+  };
 
   return (
     <>
       <View style={styles.container}>
         <TextInput
           style={styles.input}
-          onChangeText={onChangeLogin}
-          value={login}
+          onChangeText={onChangeEmail}
+          value={email}
           placeholder="Username"
         />
         <TextInput
@@ -21,7 +36,7 @@ export default function Login({childToParent}) {
           value={password}
           placeholder="Password"
         />
-        <TouchableOpacity onPress={() => childToParent("start")}
+        <TouchableOpacity onPress={(onSubmit)}
         style={styles.loginButton}
           accessibilityLabel="Logging you in"
         >

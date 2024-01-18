@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { Text } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, TextInput } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useState, useEffect } from 'react';
 import Login from './components/Login';
