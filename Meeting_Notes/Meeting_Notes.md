@@ -439,20 +439,34 @@ Tasks for this week:
 
 Assignment #1 - Test Plan - Everyone
 
-Fill in task from timeline
+Profile and setting pages - Kevin
+
+Figuring out pairing of users using geolocation - Samir and Nick
+
+Websocket sessions - Nick
+
+Page that comes up while game is active - Kody
+
+Fix various bugs and add QoL UI features - Everyone
 
 Total Time spent individually since last meeting:
 
-Kevin - 0 hrs
+Kevin - 3 hrs
 
-Kody - 0 hrs
+Kody - 2 hrs
 
-Nick - 0 hr
+Nick - 3 hr
 
-Samir - 0 hrs
+Samir - 2.5 hrs
 
 Items accomplished this meeting:
 
-*
+* Account Creation Demo
 
-Duration: 1 hour
+* Sockets progress report and demo
+
+* Troubleshooting geolocation issues
+
+* Updated Github branches
+
+Duration: 1.5 hour
