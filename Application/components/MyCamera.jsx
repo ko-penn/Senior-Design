@@ -14,9 +14,6 @@ export default function MyCamera({picPressed}) {
   const [sess, setSess] = useState('false');
   const isFocused = useIsFocused();
 
-  const fromSession = (val) => {
-    setSess(val);
-  }
 
   useEffect(() => {
     (async () => {
@@ -54,7 +51,7 @@ export default function MyCamera({picPressed}) {
     }
     else if (photo && sess) {
       return (
-          <Session fromSession={fromSession}></Session>
+          <Session></Session>
         );
   }
     else if (photo === undefined && isFocused){

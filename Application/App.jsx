@@ -12,7 +12,6 @@ import Profile from './components/Profile';
 https://reactnavigation.org/docs/drawer-navigator/#installation*/
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-import * as Location from 'expo-location';
 import Status from './components/Status';
 import { Account } from "./components/Account"
 
@@ -41,32 +40,10 @@ export default function App() {
   const childToParent = (childdata) => {
     setData(childdata);
   }
-
-  const [location, setLocation] = useState(null);
-  const [dist, setDist] = useState(null);
-
-  /*https://www.youtube.com/watch?v=2q-wgobQ-zQ*/
-  useEffect(() => {
-    (async() => {
-      let {status} = await Location.requestForegroundPermissionsAsync()
-      if (status == 'granted'){
-        console.log('grant')
-      } else {
-        console.log('deny')
-      }
-      loc = await Location.getCurrentPositionAsync({maximumAge: 10000})
-      setLocation(loc)
-      setDist((Math.acos(Math.sin(loc.coords.latitude*0.0174533)*Math.sin(39.134754*0.0174533)+Math.cos(loc.coords.latitude*0.0174533)*Math.cos(39.134754*0.0174533)*Math.cos((-84.514904*0.0174533)-(loc.coords.longitude*0.0174533)))*3963));
-    })();
-  }, []);
-
   
   if(data==="login"){
     return (
       <>
-        <Text></Text>
-        <Text>{dist}</Text>
-        <Text>{JSON.stringify(location)}</Text>
         <Account>
           <Status />
           <Login childToParent={childToParent}></Login>
