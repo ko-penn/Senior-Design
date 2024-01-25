@@ -11,12 +11,14 @@ const Status = () => {
     useEffect (() => {
         getSession()
             .then(session => {
+                console.log('Session', session);
                 console.debug("Session: ", session);
                 setStatus(true);
             })
     }, [])
 
-    return <View>{status ?  <TouchableOpacity onPress={logout} style={styles.loginButton} accessibilityLabel="Logging you in"><Text style={styles.loginText}>Logout</Text></TouchableOpacity> : <Text>Please login</Text>}</View>
+    return <View>{status ?  <TouchableOpacity onPress={logout} style={styles.logout} accessibilityLabel="Logging you out">
+      <Text style={styles.logoutText}>Logout</Text></TouchableOpacity> : <Text>Please login</Text>}</View>
 };
 
 const styles = StyleSheet.create({
@@ -37,13 +39,13 @@ const styles = StyleSheet.create({
     createtext: {
       textDecorationLine: 'underline',
     },
-    loginText: {
+    logoutText: {
       color:'#fff',
       textAlign: 'center',
       fontWeight: '700',
       fontSize: 16
     },
-    loginButton: {
+    logout: {
       backgroundColor:'#841584', 
       padding:10, 
       borderRadius:20,

@@ -62,6 +62,7 @@ export default function App() {
   else if(data==="start"){
     return (
       <>
+      <Account>
         <NavigationContainer name='nav'>
           <Drawer.Navigator initialRouteName="Home">
             <Drawer.Screen name="Home" component={HomeScreen}/>
@@ -69,6 +70,7 @@ export default function App() {
             <Drawer.Screen name="Settings" component={SettingsScreen}/>
           </Drawer.Navigator>
         </NavigationContainer>
+        <Status /></Account>
       </>
     );
   }

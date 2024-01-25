@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, Image, ImageBackground } from 'react-native';
 import MyCamera from '../components/MyCamera';
 import Session from './Session';
