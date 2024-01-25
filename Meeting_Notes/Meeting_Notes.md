@@ -443,8 +443,6 @@ Profile and setting pages - Kevin
 
 Figuring out pairing of users using geolocation - Samir and Nick
 
-Websocket sessions - Nick
-
 Page that comes up while game is active - Kody
 
 Fix various bugs and add QoL UI features - Everyone
@@ -470,3 +468,33 @@ Items accomplished this meeting:
 * Updated Github branches
 
 Duration: 1.5 hour
+
+**1-25-24**
+
+Tasks for this week:
+
+Assignment #2 - User Docs - Everyone
+
+Profile and setting pages - Kevin
+
+Figuring out pairing of users - Nick
+
+Storing user data in AWS - Samir
+
+Fix various bugs and add QoL UI features - Everyone - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 2 hrs
+
+Kody - 1.5 hrs
+
+Nick - 1.5 hr
+
+Samir - 2.5 hrs
+
+Items accomplished this meeting:
+
+* General status updates and demos
+
+Duration: 1 hour
