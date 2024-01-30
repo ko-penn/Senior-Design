@@ -6,6 +6,7 @@ export default function Login({childToParent}) {
 
   const [email, onChangeEmail] = React.useState('');
   const [password, onChangePassword] = React.useState('');
+  const [warning, setWarning] = React.useState('');
 
   const { authenticate } = useContext(AccountContext)
 
@@ -14,9 +15,11 @@ export default function Login({childToParent}) {
 
     authenticate(email, password)
       .then(data => {
+        setWarning("");
         childToParent("start");
       })
       .catch(err => {
+        setWarning("Username/Password are invalid or account has not been confirmed");
         console.error("Failed to login", err);
       })
   };
@@ -33,9 +36,11 @@ export default function Login({childToParent}) {
         <TextInput
           style={styles.input}
           onChangeText={onChangePassword}
+          secureTextEntry={true}
           value={password}
           placeholder="Password"
         />
+        <Text style={styles.warningText}>{warning}</Text>
         <TouchableOpacity onPress={(onSubmit)}
         style={styles.loginButton}
           accessibilityLabel="Logging you in"
@@ -80,5 +85,9 @@ const styles = StyleSheet.create({
     borderRadius:20,
     marginBottom:30,
     width:300
+  },
+  warningText: {
+    color: '#FF0000',
+    textAlign: 'center'
   }
 });
