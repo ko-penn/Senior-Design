@@ -489,12 +489,44 @@ Kevin - 2 hrs
 
 Kody - 1.5 hrs
 
-Nick - 1.5 hr
+Nick - 1.5 hrs
 
 Samir - 2.5 hrs
 
 Items accomplished this meeting:
 
 * General status updates and demos
+
+Duration: 1 hour
+
+**2-1-24**
+
+Tasks for this week:
+
+Assignment #2 - User Docs - Everyone
+
+Popup after account creation about email as well as listing the password requirements - Kevin
+
+Authorization for Web Sockets - Nick
+
+Storing user data in AWS - Samir
+
+Fix heading to location heading and web location - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 1.5 hrs
+
+Kody - 2 hrs
+
+Nick - 1 hr
+
+Samir - 2 hrs
+
+Items accomplished this meeting:
+
+* General status updates and demos
+
+* User Docs
 
 Duration: 1 hour
