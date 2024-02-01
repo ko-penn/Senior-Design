@@ -1,19 +1,32 @@
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, Image, ImageBackground } from 'react-native';
-import MyCamera from '../components/MyCamera'; 
+import MyCamera from '../components/MyCamera';
+import Session from './Session';
 
 
 export default function Start() {
 
   const [description, onChangeDescription] = useState('');
   const [pic, setPic] = useState('false');
+  const [sess, setSess] = useState('false');
+  const [warning, setWarning] = useState('');
+
 
   const picPressed = (val) => {
     setPic(val);
   }
 
-  if(pic === 'false'){
+  const descPressed = () => {
+    if(description===''){
+      setWarning('Please enter a description first');
+    }
+    else{
+      setWarning('');
+      setSess('true');
+    }
+  }
+
+  if(pic === 'false' && sess === 'false'){
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={() => picPressed("true")}>
@@ -22,13 +35,14 @@ export default function Start() {
         <Text>Take a picture of yourself:</Text>
         <Text>--------------- OR ---------------</Text>
         <Text>Enter a description of yourself:</Text>
+        <Text style={styles.warningText}>{warning}</Text>
         <TextInput
           style={styles.input}
           onChangeText={onChangeDescription}
           value={description}
           placeholder=""
         />
-          <TouchableOpacity onPress={() => childToParent("start")}
+          <TouchableOpacity onPress={() => descPressed()}
           style={styles.matchmakeButton}
             accessibilityLabel="Starting matchmaking"
           >
@@ -37,8 +51,13 @@ export default function Start() {
       </View>
     );
   }
-  else{
+  else if (pic === 'true' && sess === 'false'){
     return (<MyCamera picPressed={picPressed}></MyCamera>)
+  }
+  else if (sess === 'true'){
+    return(
+      <Session></Session>
+    )
   }
   
 }
@@ -75,4 +94,7 @@ const styles = StyleSheet.create({
     marginBottom:30,
     width:300
   },
+  warningText: {
+    color: '#FF0000'
+  }
 });

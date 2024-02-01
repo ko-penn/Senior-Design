@@ -1,27 +1,47 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
 import { StyleSheet, Text, View, TextInput,TouchableOpacity } from 'react-native';
+import { AccountContext } from "./Account";
 
 export default function Login({childToParent}) {
 
-  const [login, onChangeLogin] = React.useState('');
+  const [email, onChangeEmail] = React.useState('');
   const [password, onChangePassword] = React.useState('');
+  const [warning, setWarning] = React.useState('');
+
+  const { authenticate } = useContext(AccountContext)
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+
+    authenticate(email, password)
+      .then(data => {
+        setWarning("");
+        childToParent("start");
+      })
+      .catch(err => {
+        setWarning("Username/Password are invalid or account has not been confirmed");
+        console.error("Failed to login", err);
+      })
+  };
 
   return (
     <>
       <View style={styles.container}>
         <TextInput
           style={styles.input}
-          onChangeText={onChangeLogin}
-          value={login}
+          onChangeText={onChangeEmail}
+          value={email}
           placeholder="Username"
         />
         <TextInput
           style={styles.input}
           onChangeText={onChangePassword}
+          secureTextEntry={true}
           value={password}
           placeholder="Password"
         />
-        <TouchableOpacity onPress={() => childToParent("start")}
+        <Text style={styles.warningText}>{warning}</Text>
+        <TouchableOpacity onPress={(onSubmit)}
         style={styles.loginButton}
           accessibilityLabel="Logging you in"
         >
@@ -65,5 +85,9 @@ const styles = StyleSheet.create({
     borderRadius:20,
     marginBottom:30,
     width:300
+  },
+  warningText: {
+    color: '#FF0000',
+    textAlign: 'center'
   }
 });

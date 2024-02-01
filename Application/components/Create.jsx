@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
 import UserPool from "./UserPool";
 
 export default function Create({childToParent}) {
@@ -7,19 +7,29 @@ export default function Create({childToParent}) {
   const [email, onChangeEmail] = React.useState('');
   const [username, onChangeUsername] = React.useState('');
   const [password, onChangePassword] = React.useState('');
+  const [confirmPassword, onChangeConfirmPassword] = React.useState('');
+  const [warning, setWarning] = React.useState('');
 
   const onSubmit = (event) => {
-    event.preventDefault();
+    if(password === confirmPassword){
+      event.preventDefault();
 
-    UserPool.signUp(email, password, [], null, (err, data) => {
-        if (err) {
-            console.debug(err);
-        }
-        else{
-          childToParent("login");
-        }
-        console.debug(data);
-    });
+      UserPool.signUp(email, password, [], null, (err, data) => {
+          if (err) {
+              setWarning('Invalid account information');
+              console.debug(err);
+          }
+          else{
+            setWarning("");
+            childToParent("login");
+          }
+          console.debug(data);
+      });
+    }
+    else{
+      setWarning("Passwords do not match");
+    }
+    
   };
 
   return (
@@ -40,14 +50,23 @@ export default function Create({childToParent}) {
         <TextInput
           style={styles.input}
           onChangeText={onChangePassword}
+          secureTextEntry={true}
           value={password}
           placeholder="Password"
         />
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeConfirmPassword}
+          secureTextEntry={true}
+          value={confirmPassword}
+          placeholder="Confirm Password"
+        />
+        <Text style={styles.warningText}>{warning}</Text>
         <TouchableOpacity onPress={onSubmit}
         style={styles.createButton}
           accessibilityLabel="Creating Account"
         >
-          <Text style={styles.loginText}>Create</Text>
+        <Text style={styles.loginText}>Create</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => childToParent("login")}
         style={styles.createButton}
@@ -87,5 +106,8 @@ const styles = StyleSheet.create({
     borderRadius:20,
     marginBottom:10,
     width:300
+  },
+  warningText: {
+    color: '#FF0000'
   }
 });
