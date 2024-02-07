@@ -43,7 +43,7 @@ export default function MyCamera({picPressed}) {
     if (photo && sess==='false') {
         return (
             <SafeAreaView style={styles.container}>
-              <Image style={styles.preview} source={{ uri: "data:image/jpg;base64," + photo.base64 }} />
+              <Image style={styles.preview} source={photo} />
               <Button title="Use" onPress={() => setSess("true")}/>
               <Button title="Discard" onPress={() => setPhoto(undefined)} />
             </SafeAreaView>
