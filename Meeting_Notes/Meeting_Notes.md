@@ -527,6 +527,36 @@ Items accomplished this meeting:
 
 * General status updates and demos
 
+Duration: 1 hour
+
+**2-8-24**
+
+Tasks for this week:
+
+Assignment #3 - Presentation Slidedeck - Everyone
+
+Popup after account creation about email as well as listing the password requirements - Kevin
+
+Authorization for Web Sockets - Nick
+
+Authenticate user for upload data on S3 - Samir
+
+Fix heading to be only iOS and Android - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 2 hrs
+
+Kody - 2.5 hrs
+
+Nick - 5 hr
+
+Samir - 4 hrs
+
+Items accomplished this meeting:
+
+* General status updates and demos
+
 * User Docs
 
-Duration: 1 hour
+Duration: 1.5 hours
