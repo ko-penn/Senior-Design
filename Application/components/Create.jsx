@@ -16,14 +16,12 @@ export default function Create({childToParent}) {
 
       UserPool.signUp(email, password, [], null, (err, data) => {
           if (err) {
-              setWarning('Invalid account information');
-              console.debug(err);
+              setWarning(err.message);
           }
           else{
             setWarning("");
             childToParent("login");
           }
-          console.debug(data);
       });
     }
     else{
@@ -35,6 +33,10 @@ export default function Create({childToParent}) {
   return (
     <>
       <View style={styles.container}>
+        <Text style={styles.passwordReqsText}>Password must be at least 8 characters long</Text>
+        <Text style={styles.passwordReqsText}>Password must contain at least one upper case letter</Text>
+        <Text style={styles.passwordReqsText}>Password must contain at least one numeric character</Text>
+        <Text style={styles.passwordReqsText}>Password must contain at least one symbol character</Text>
         <TextInput
           style={styles.input}
           onChangeText={onChangeEmail}
@@ -108,6 +110,10 @@ const styles = StyleSheet.create({
     width:300
   },
   warningText: {
-    color: '#FF0000'
+    color: '#FF0000',
+    textAlign: 'center',
+  },
+  passwordReqsText: {
+    textAlign: 'center',
   }
 });
