@@ -1,6 +1,7 @@
 /*Page to display your active game, contains image/description, distance, direction, and button to win*/
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Platform, TouchableOpacity } from 'react-native';
+import { Magnetometer} from 'expo-sensors';
 import { useState, useEffect} from 'react';
 import * as Location from 'expo-location';
 
@@ -17,6 +18,11 @@ function angleFromCoordinates(lat1,long1,lat2,long2) {
 
 
 export default function Session() {
+  const [{ x, y, z }, setData] = useState({
+    x: 0,
+    y: 0,
+    z: 0,
+  });
   const [targetDist, setTargetDist] = useState(null);
   const [targetAngle, setTargetAngle] = useState(null);
   const [targetDirection, setTargetDirection] = useState(null);
@@ -28,6 +34,10 @@ export default function Session() {
     else if(deg>135 && deg<=225){setTargetDirection("South")}
     else if(deg>225 && deg<=315){setTargetDirection("West")}
   }
+  const plat = Platform.OS;
+  const onFound = () => {
+    console.log("I Found You! button pressed");
+  };
 
  /*https://www.youtube.com/watch?v=2q-wgobQ-zQ*/
  useEffect(() => {
@@ -49,15 +59,48 @@ export default function Session() {
   setTimeout(function(){
     direction(targetAngle);
   }, 5000);
+
   
-  return (
-    <>
-      <View style={styles.container}>
-        <Text>Target: {'description or picture of target'}</Text>
-        <Text>Target is {targetDist} miles to the {targetDirection}</Text>
-      </View>
-    </>
-  );
+  
+  if (plat === 'ios' || plat === 'android'){
+    Magnetometer.addListener(result => {
+      setData(result);
+    })
+    Magnetometer.setUpdateInterval(2000);
+  
+    heading = Math.atan2(y, x)*180/Math.PI - 90;
+    if(heading>-45 && heading<=45){myDirection="North"}
+    else if(heading>45 || heading<=-225){myDirection="East"}
+    else if(heading>-225 && heading<=-135){myDirection="South"}
+    else if(heading<=-45 && heading>-135){myDirection="West"}
+    else {myDirection=null}
+    return (
+      <>
+        <View style={styles.container}>
+          <Text>Target: {'description or picture of target'}</Text>
+          <Text>Target is {targetDist} miles to the {targetDirection}</Text>
+          <Text>Aiming {myDirection}</Text>
+          <TouchableOpacity onPress={onFound} style={styles.foundButton} accessibilityLabel="I Found You!">
+            <Text style={styles.foundText}>I Found You!</Text>
+          </TouchableOpacity>
+        </View>
+      </>
+    );
+  }
+  else{
+    return (
+      <>
+        <View style={styles.container}>
+          <Text>Target: {'description or picture of target'}</Text>
+          <Text>Target is {targetDist} miles to the {targetDirection}</Text>
+          <TouchableOpacity onPress={onFound} style={styles.foundButton} accessibilityLabel="I Found You!">
+            <Text style={styles.foundText}>I Found You!</Text>
+          </TouchableOpacity>
+        </View>
+      </>
+    );
+  }
+  
 }
 
 
@@ -67,5 +110,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  foundText: {
+    color:'#fff',
+    textAlign: 'center',
+    fontWeight: '700',
+    fontSize: 16
+  },
+  foundButton: {
+    backgroundColor:'#841584', 
+    padding:10, 
+    borderRadius:20,
+    marginBottom:30,
+    width:300
   },
 });
