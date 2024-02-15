@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, Image, ImageBackground } from 'react-native';
 import MyCamera from '../components/MyCamera';
 import Session from './Session';
+import { connect as connectWebSocket } from './WebSocketService';
 
 
 export default function Start() {
@@ -16,13 +17,26 @@ export default function Start() {
     setPic(val);
   }
 
-  const descPressed = () => {
+  const descPressed = async () => {
     if(description===''){
       setWarning('Please enter a description first');
     }
     else{
       setWarning('');
+      connectWebSocket('Enter the Websocket URL here');
       setSess('true');
+
+
+      // TODO: make await statement below work so that if the websocket isn't available the next page won't be navigated to
+      // try {
+      //   setWarning('');
+      //   await connectWebSocket('wss://zpmt1auq7e.execute-api.us-east-2.amazonaws.com/production/');
+      //   setSess('true');
+      //   console.log("hello!!!!!!!!!!!!!!!!!!!!")
+      // } catch (error) {
+      //   console.error('Failed to establish WebSocket connection:', error);
+      //   setWarning('Failed to establish WebSocket connection');
+      // }
     }
   }
 

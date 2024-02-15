@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, Platform, TouchableOpacity } from 'react
 import { Magnetometer} from 'expo-sensors';
 import { useState, useEffect} from 'react';
 import * as Location from 'expo-location';
-
+import { send as sendWebSocket } from './WebSocketService';
 
 //https://stackoverflow.com/questions/3932502/calculate-angle-between-two-latitude-longitude-points
 function angleFromCoordinates(lat1,long1,lat2,long2) {
@@ -14,6 +14,11 @@ function angleFromCoordinates(lat1,long1,lat2,long2) {
   brng = brng*57.2958;
   brng = (brng + 360) % 360; //count degrees clockwise
   return(brng);
+}
+
+// example of how to call websocket functions
+function testSocket() {
+  sendWebSocket("{\"action\": \"sendMessage\", \"message\": \"Hello from app\"}")
 }
 
 
@@ -100,7 +105,6 @@ export default function Session() {
       </>
     );
   }
-  
 }
 
 
