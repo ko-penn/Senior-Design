@@ -20,7 +20,7 @@ export default function Create({childToParent}) {
           }
           else{
             setWarning("");
-            childToParent("login");
+            childToParent("loginVerif");
           }
       });
     }

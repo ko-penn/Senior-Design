@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import { StyleSheet, Text, View, TextInput,TouchableOpacity } from 'react-native';
 import { AccountContext } from "./Account";
 
-export default function Login({childToParent}) {
+export default function Login({childToParent, ver}) {
 
   const [email, onChangeEmail] = React.useState('');
   const [password, onChangePassword] = React.useState('');
@@ -27,6 +27,7 @@ export default function Login({childToParent}) {
   return (
     <>
       <View style={styles.container}>
+      <Text style={styles.warningText}>{ver}</Text>
         <TextInput
           style={styles.input}
           onChangeText={onChangeEmail}

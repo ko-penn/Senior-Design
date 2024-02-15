@@ -46,7 +46,24 @@ export default function App() {
       <>
         <Account>
           <Status />
-          <Login childToParent={childToParent}></Login>
+          <Login 
+            childToParent={childToParent} 
+            ver=''>
+          </Login>
+        </Account>
+      </>
+      
+    );
+  }
+  else if (data==="loginVerif"){
+    return (
+      <>
+        <Account>
+          <Status />
+          <Login 
+            childToParent={childToParent} 
+            ver='Email verification sent. Please verify before logging in.'>
+          </Login>
         </Account>
       </>
       
