@@ -549,7 +549,7 @@ Kevin - 2 hrs
 
 Kody - 2.5 hrs
 
-Nick - 5 hr
+Nick - 5 hrs
 
 Samir - 4 hrs
 
@@ -560,3 +560,35 @@ Items accomplished this meeting:
 * User Docs
 
 Duration: 1.5 hours
+
+**2-15-24**
+
+Tasks for this week:
+
+Assignment #3 - Presentation Slidedeck - Everyone
+
+Profile page styling, fix Apple keyboard covering text input, move the logout button to the hamburger - Kevin
+
+Storing and retrieving target location - Nick
+
+Authenticate user for upload data on S3 - Samir
+
+Camera styling - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 2 hrs
+
+Kody - 1 hr
+
+Nick - 3.5 hrs
+
+Samir - 1 hrs
+
+Items accomplished this meeting:
+
+* General status updates and demos
+
+* Presentation Slidedeck
+
+Duration: 1 hour
