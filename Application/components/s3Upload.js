@@ -10,28 +10,7 @@ var SECRET_ACCESS_KEY;
 var SESSIONTOKEN;
 
 
-AWS.config.region = 'us-east-2';
-/*AWS.config.update({
-  region: BUCKET_REGION,
-  credentials: new AWS.CofnitoIdentityCredentials({
-    IdentityPoolId: 'us-east-2:b4ef0dfa-a450-4f30-b822-8da09b94fa32',
-    IdentityId: '88eb6383-853a-4d3d-8831-29ad8902592a'
-  })
-})*/
-//original
-/*const s3 = new S3Client({
-    credentials: {
-    accessKeyId: ACCESS_KEY,
-    secretAccessKey: SECRET_ACCESS_KEY,
-    },
-   region: BUCKET_REGION
-         });*/
-
-
-
-    
-    
-    
+AWS.config.region = 'us-east-2';    
 
 //original          
 export const uploadToS3 = async (file, userID) => {

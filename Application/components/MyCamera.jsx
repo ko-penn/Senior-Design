@@ -61,7 +61,7 @@ export default function MyCamera({picPressed}) {
         <View style={styles.container}>
           <Image style={styles.preview} source={photo} />
           <View style={styles.buttonContainer}>
-            <Button title="Use" onPress={() => setSess("true")}/>
+            <Button title="Use" onPress={onUse}/>
             <Button title="Discard" onPress={() => setPhoto(undefined)} />
           </View>
         </View>
@@ -99,6 +99,6 @@ const styles = StyleSheet.create({
   preview: {
     flex: 1,
     alignSelf: 'stretch',
-    transform: scaleX(-1),
+    transform: [{scaleX: -1}],
   }
 });
