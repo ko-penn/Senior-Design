@@ -57,13 +57,15 @@ export default function MyCamera({picPressed}) {
     };
 
     if (photo && sess==='false') {
-        return (
-            <SafeAreaView style={styles.container}>
-              <Image style={styles.preview} source={photo} />
-              <Button title="Use" onPress={onUse}/>
-              <Button title="Discard" onPress={() => setPhoto(undefined)} />
-            </SafeAreaView>
-          );
+      return ( 
+        <View style={styles.container}>
+          <Image style={styles.preview} source={photo} />
+          <View style={styles.buttonContainer}>
+            <Button title="Use" onPress={() => setSess("true")}/>
+            <Button title="Discard" onPress={() => setPhoto(undefined)} />
+          </View>
+        </View>
+      );
     }
     else if (photo && sess) {
       return (
@@ -97,5 +99,6 @@ const styles = StyleSheet.create({
   preview: {
     flex: 1,
     alignSelf: 'stretch',
+    transform: scaleX(-1),
   }
 });

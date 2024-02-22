@@ -42,6 +42,7 @@ export default function Create({childToParent}) {
           onChangeText={onChangeEmail}
           value={email}
           placeholder="Email"
+          autoFocus = {true}
         />
         <TextInput
           style={styles.input}
