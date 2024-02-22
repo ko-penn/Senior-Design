@@ -8,7 +8,7 @@ export default function Login({childToParent, ver}) {
   const [password, onChangePassword] = React.useState('');
   const [warning, setWarning] = React.useState('');
 
-  const { authenticate } = useContext(AccountContext)
+  const { authenticate } = useContext(AccountContext);
 
   const onSubmit = (event) => {
     event.preventDefault();

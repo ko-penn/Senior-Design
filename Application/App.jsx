@@ -14,6 +14,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import Status from './components/Status';
 import { Account } from "./components/Account"
+import MyCamera from './components/MyCamera';
 
 function HomeScreen({ navigation }) {
   return (
@@ -30,6 +31,12 @@ function ProfileScreen({ navigation }) {
 function SettingsScreen({ navigation }) {
   return (
     <Settings></Settings>
+  );
+}
+
+function SettingsCamera({ navigation }) {
+  return (
+    <MyCamera></MyCamera>
   );
 }
 
@@ -85,6 +92,7 @@ export default function App() {
             <Drawer.Screen name="Home" component={HomeScreen}/>
             <Drawer.Screen name="Profile" component={ProfileScreen}/>
             <Drawer.Screen name="Settings" component={SettingsScreen}/>
+            <Drawer.Screen name="MyCamera" component={SettingsCamera}/>
           </Drawer.Navigator>
         </NavigationContainer>
         <Status /></Account>

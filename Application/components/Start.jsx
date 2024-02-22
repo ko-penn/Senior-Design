@@ -23,7 +23,7 @@ export default function Start() {
     }
     else{
       setWarning('');
-      connectWebSocket('Enter the Websocket URL here');
+      connectWebSocket('wss://zpmt1auq7e.execute-api.us-east-2.amazonaws.com/production/');
       setSess('true');
 
 

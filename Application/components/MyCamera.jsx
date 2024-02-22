@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, SafeAreaView, Image } from 'react-native';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 /*https://www.youtube.com/watch?v=4WPjWK0MYMI*/
 import { Camera } from 'expo-camera';
 import { useIsFocused } from '@react-navigation/native';
 import Session from './Session';
+import { uploadToS3 } from './s3Upload';
+import Pool from "./UserPool";
 
 
 export default function MyCamera({picPressed}) {
@@ -14,6 +16,20 @@ export default function MyCamera({picPressed}) {
   const [sess, setSess] = useState('false');
   const isFocused = useIsFocused();
 
+
+  const onUse = (event) => {
+    setSess("true");
+    const user= Pool.getCurrentUser().getUsername();
+    const base64Photo = photo.base64.replace(/^data:image\/\w+;base64,/, "");
+    const {error, key} = uploadToS3(base64Photo, user);
+    if(error){
+      console.debug("onFailure: ", err);
+      reject(err);
+    }
+    else{
+      console.debug("success", key)
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -44,7 +60,7 @@ export default function MyCamera({picPressed}) {
         return (
             <SafeAreaView style={styles.container}>
               <Image style={styles.preview} source={photo} />
-              <Button title="Use" onPress={() => setSess("true")}/>
+              <Button title="Use" onPress={onUse}/>
               <Button title="Discard" onPress={() => setPhoto(undefined)} />
             </SafeAreaView>
           );

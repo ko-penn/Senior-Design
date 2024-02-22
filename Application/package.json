@@ -9,10 +9,13 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.504.0",
     "@expo/webpack-config": "^19.0.0",
     "@react-native-async-storage/async-storage": "1.18.2",
     "@react-navigation/drawer": "^6.6.6",
     "amazon-cognito-identity-js": "^6.3.7",
+    "aws-sdk": "^2.1549.0",
+    "dotenv": "^16.4.1",
     "expo": "~49.0.15",
     "expo-camera": "~13.4.4",
     "expo-location": "~16.1.0",
