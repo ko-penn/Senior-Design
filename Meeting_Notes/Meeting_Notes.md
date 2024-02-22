@@ -592,3 +592,33 @@ Items accomplished this meeting:
 * Presentation Slidedeck
 
 Duration: 1 hour
+
+**2-22-24**
+
+Tasks for this week:
+
+Assignment #4 - Expo Poster - Everyone
+
+Profile page styling, fix Apple keyboard covering text input, move the logout button to the hamburger - Kevin
+
+Pairing up of user based on location - Nick
+
+Figuring out bundling error - Samir
+
+Figuring out bundling error - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 1 hr
+
+Kody - 0.5 hrs
+
+Nick - 3 hrs
+
+Samir - 4.5 hrs
+
+Items accomplished this meeting:
+
+* General status updates and demos
+
+Duration: 2 hours
