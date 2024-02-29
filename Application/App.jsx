@@ -1,24 +1,25 @@
 import 'react-native-gesture-handler';
-import React from 'react';
-import { StyleSheet, Text, View, Button, Alert, TextInput } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import React, { useContext } from 'react';
+import { StyleSheet, Text, KeyboardAvoidingView, Platform } from 'react-native';
 import { useState, useEffect } from 'react';
 import Login from './components/Login';
 import Start from './components/Start';
 import Create from './components/Create';
 import Settings from './components/Settings';
 import Profile from './components/Profile';
-/*https://reactnavigation.org/docs/drawer-based-navigation
-https://reactnavigation.org/docs/drawer-navigator/#installation*/
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import Status from './components/Status';
-import { Account } from "./components/Account"
+import { Account, AccountContext } from "./components/Account"
 import MyCamera from './components/MyCamera';
 
 function HomeScreen({ navigation }) {
   return (
-    <Start></Start>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}>
+      <Start></Start>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -37,6 +38,15 @@ function SettingsScreen({ navigation }) {
 function SettingsCamera({ navigation }) {
   return (
     <MyCamera></MyCamera>
+  );
+}
+
+function Logout({ navigation }) {
+  useContext(AccountContext).logout();
+  return (
+    <div style={styles.container}>
+      <Text style={styles.logoutText}>Logging you out. Please wait.</Text>
+    </div>
   );
 }
 
@@ -93,6 +103,7 @@ export default function App() {
             <Drawer.Screen name="Profile" component={ProfileScreen}/>
             <Drawer.Screen name="Settings" component={SettingsScreen}/>
             <Drawer.Screen name="MyCamera" component={SettingsCamera}/>
+            <Drawer.Screen name="Logout" component={Logout}/>
           </Drawer.Navigator>
         </NavigationContainer>
         <Status /></Account>
@@ -107,3 +118,17 @@ export default function App() {
     );
   } 
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logoutText: {
+    textAlign: 'center',
+    fontWeight: '700',
+    fontSize: 16
+  }
+});
