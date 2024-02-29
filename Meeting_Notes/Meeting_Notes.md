@@ -601,7 +601,7 @@ Assignment #4 - Expo Poster - Everyone
 
 Profile page styling, fix Apple keyboard covering text input, move the logout button to the hamburger - Kevin
 
-Pairing up of user based on location - Nick
+Pairing up of users based on location - Nick
 
 Figuring out bundling error - Samir
 
@@ -622,3 +622,35 @@ Items accomplished this meeting:
 * General status updates and demos
 
 Duration: 2 hours
+
+**2-29-24**
+
+Tasks for this week:
+
+Assignment #4 - Expo Poster - Everyone
+
+Profile page styling, fix Apple keyboard covering text input - Kevin
+
+Matching users using location, API diagram - Nick
+
+Fix the S3 error - Samir
+
+Camera Styling and other general styling - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 3 hr
+
+Kody - 2 hrs
+
+Nick - 4 hrs
+
+Samir - 4.5 hrs
+
+Items accomplished this meeting:
+
+* General status updates and demos
+
+* Created lists of items we wanted on our poster
+
+Duration: 1 hour
