@@ -19,7 +19,7 @@ const Status = () => {
 
     // return <View>{status ?  <TouchableOpacity onPress={logout} style={styles.logout} accessibilityLabel="Logging you out">
     //   <Text style={styles.logoutText}>Logout</Text></TouchableOpacity> : <Text>Please login</Text>}</View>
-    return <View>{!status ? <Text>Please login</Text> : <div></div>}</View>
+    return <View>{!status ? <Text>Please login</Text> : <View></View>}</View>
 };
 
 const styles = StyleSheet.create({
