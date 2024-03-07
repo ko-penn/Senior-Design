@@ -654,3 +654,33 @@ Items accomplished this meeting:
 * Created lists of items we wanted on our poster
 
 Duration: 1 hour
+
+**3-7-24**
+
+Tasks for this week:
+
+Assignment #4 - Expo Poster - Everyone
+
+Profile page styling, fix Apple keyboard covering text input - Kevin
+
+Matching users using location, API diagram - Nick
+
+Fix the S3 error - Samir
+
+Camera Styling and other general styling - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 1 hr
+
+Kody - 1.5 hrs
+
+Nick - 4 hrs
+
+Samir - 3 hrs
+
+Items accomplished this meeting:
+
+* Created basics of the poster.
+
+Duration: 1.5 hour
