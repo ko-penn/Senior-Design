@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, SafeAreaView, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView, Image, Platform } from 'react-native';
 import { useState, useEffect, useRef, useContext } from 'react';
 /*https://www.youtube.com/watch?v=4WPjWK0MYMI*/
 import { Camera } from 'expo-camera';
@@ -15,6 +15,7 @@ export default function MyCamera({picPressed}) {
   const [photo, setPhoto] = useState();
   const [sess, setSess] = useState('false');
   const isFocused = useIsFocused();
+  const plat = Platform.OS;
 
 
   const onUse = (event) => {
@@ -57,15 +58,24 @@ export default function MyCamera({picPressed}) {
     };
 
     if (photo && sess==='false') {
-      return ( 
-        <View style={styles.container}>
-          <Image style={styles.preview} source={photo} />
-          <View style={styles.buttonContainer}>
+      if (plat === 'ios' || plat === 'android'){
+        return (
+          <SafeAreaView style={styles.container}>
+            <Image style={styles.preview} source={photo} />
             <Button title="Use" onPress={onUse}/>
             <Button title="Discard" onPress={() => setPhoto(undefined)} />
-          </View>
-        </View>
-      );
+          </SafeAreaView>
+        );
+      }
+      else{
+        return (
+          <SafeAreaView style={styles.container}>
+            <Image style={styles.comppreview} source={photo} />
+            <Button title="Use" onPress={onUse}/>
+            <Button title="Discard" onPress={() => setPhoto(undefined)} />
+          </SafeAreaView>
+        );
+      }
     }
     else if (photo && sess) {
       return (
@@ -73,15 +83,26 @@ export default function MyCamera({picPressed}) {
         );
   }
     else if (photo === undefined && isFocused){
+      if (plat === 'ios' || plat === 'android'){
         return(
-          
-            <Camera style={styles.container} ref={cameraRef}>
-              <View style={styles.buttonContainer}>
-                <Button title="<-" onPress={() => picPressed("false")} />
-                <Button title="Take Pic" onPress={takePic} />
-              </View>
-            </Camera>
-          )
+          <Camera style={styles.camera} ref={cameraRef}>
+            <View style={styles.buttonContainer}>
+              <Button title="<-" onPress={() => picPressed("false")} />
+              <Button title="Take Pic" onPress={takePic} />
+            </View>
+          </Camera>
+        )
+      }
+      else{
+        return(
+          <Camera style={styles.compcamera} ref={cameraRef}>
+            <View style={styles.buttonContainer}>
+              <Button title="<-" onPress={() => picPressed("false")} />
+              <Button title="Take Pic" onPress={takePic} />
+            </View>
+          </Camera>
+        )
+      }
     }
   }
 }
@@ -89,6 +110,19 @@ export default function MyCamera({picPressed}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  camera: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    flexDirection: 'column',
+  },
+  compcamera: {
+    width: '50%',
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'flex-end',
     flexDirection: 'column',
@@ -98,7 +132,15 @@ const styles = StyleSheet.create({
   },
   preview: {
     flex: 1,
-    alignSelf: 'stretch',
+    resizeMode: 'contain',
+  },
+  comppreview: {
+    flex: 1,
+    resizeMode: 'contain',
     transform: [{scaleX: -1}],
+  },
+  imageContainer: {
+    flex: 1,
+    objectFit: 'contain'
   }
 });
