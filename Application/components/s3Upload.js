@@ -63,7 +63,6 @@ export const uploadToS3 = async (file, userID) => {
           Bucket:BUCKET, 
           Key: key, 
           Body: file,
-          ContentEncoding: 'base64',
           ContentType: 'image/png',
         }, function(err, data){
           if (err) {
