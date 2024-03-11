@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, Image, ImageBackground } from 'react-native';
 import MyCamera from '../components/MyCamera';
 import Session from './Session';
-import { connect as connectWebSocket } from './WebSocketService';
+import { connect as connectWebSocket, send as sendWebSocket, connectionId, match as setMatchingStatus } from './WebSocketService';
+import Spinner from './Spinner';
 
 
 export default function Start() {
@@ -10,6 +11,7 @@ export default function Start() {
   const [description, onChangeDescription] = useState('');
   const [pic, setPic] = useState('false');
   const [sess, setSess] = useState('false');
+  const [match, setMatch] = useState('false');
   const [warning, setWarning] = useState('');
 
 
@@ -22,21 +24,23 @@ export default function Start() {
       setWarning('Please enter a description first');
     }
     else{
-      setWarning('');
-      connectWebSocket('wss://zpmt1auq7e.execute-api.us-east-2.amazonaws.com/production/');
-      setSess('true');
+        await connectWebSocket('websocket url')
+        .then(() => {
+          setWarning('');
+          console.log(connectionId);
+          setSess('true');
+        })
+        .catch((error) => {
+            console.error('Failed to establish WebSocket connection:', error);
+            setWarning('Failed to establish WebSocket connection');
+        });
 
 
-      // TODO: make await statement below work so that if the websocket isn't available the next page won't be navigated to
-      // try {
-      //   setWarning('');
-      //   await connectWebSocket('wss://zpmt1auq7e.execute-api.us-east-2.amazonaws.com/production/');
-      //   setSess('true');
-      //   console.log("hello!!!!!!!!!!!!!!!!!!!!")
-      // } catch (error) {
-      //   console.error('Failed to establish WebSocket connection:', error);
-      //   setWarning('Failed to establish WebSocket connection');
-      // }
+        await setMatchingStatus()
+        .then(() => {
+          setMatch('true');
+          console.log("match found")
+        })
     }
   }
 
@@ -68,12 +72,16 @@ export default function Start() {
   else if (pic === 'true' && sess === 'false'){
     return (<MyCamera picPressed={picPressed}></MyCamera>)
   }
-  else if (sess === 'true'){
+  else if (match === 'true'){
     return(
       <Session></Session>
     )
   }
-  
+  else if (sess === 'true'){
+    return(
+      <Spinner>Looking for someone else</Spinner>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -102,7 +110,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   matchmakeButton: {
-    backgroundColor:'#841584', 
+    backgroundColor:'#31a9ce', 
     padding:10, 
     borderRadius:20,
     marginBottom:30,

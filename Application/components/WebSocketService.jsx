@@ -1,18 +1,27 @@
 let socket = null;
+let connectionId = null;
 
 const connect = (url) => {
     return new Promise((resolve, reject) => {
         socket = new WebSocket(url);
 
         socket.onopen = (Response) => {
-          // TODO: On 
-          console.log(Response)
+            send("me")
+            console.log(Response)
             console.log('Connected to WebSocket server');
         };
 
         socket.onmessage = (message) => {
-            console.log(message.data)
+            let JsonMessage = JSON.parse(message.data);
+            console.log(JsonMessage)
             console.log('Recieved message');
+            if (JsonMessage.me != null) {
+              connectionId = JsonMessage.me.connectionId
+              // Will allow for the await call statement to continue once the connectionId is succesfully assigned
+              resolve()
+            }
+            
+            resolve(message)
         };
 
         socket.onclose = () => {
@@ -43,4 +52,24 @@ const close = () => {
   }
 };
 
-export { connect, send, close };
+const match = (message) => {
+  return new Promise((resolve, reject) => { 
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      send("{\"action\": \"matchUsers\", \"connectionId\": \"" + connectionId +"\"}")
+      
+      socket.onmessage = (message) => {
+        let JsonMessage = JSON.parse(message.data);
+
+        if (JsonMessage.matchId != null) {
+          resolve(JsonMessage.matchId)
+        }
+      }
+
+    } else {
+      reject()
+    }
+  })
+};
+
+
+export { connect, send, close, match, connectionId };
