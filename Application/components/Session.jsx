@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, Platform, TouchableOpacity } from 'react
 import { Magnetometer} from 'expo-sensors';
 import { useState, useEffect} from 'react';
 import * as Location from 'expo-location';
-import { send as sendWebSocket } from './WebSocketService';
+import { send as sendWebSocket, waitForTargetDirections, sendCurrentLocation, getTargetInitialCordinates, targetLat, targetLong } from './WebSocketService';
 
 //https://stackoverflow.com/questions/3932502/calculate-angle-between-two-latitude-longitude-points
 function angleFromCoordinates(lat1,long1,lat2,long2) {
@@ -54,9 +54,17 @@ export default function Session() {
     } else {
       console.log('granted')
     }
+    // takes awhile to get to this part of the code. Maybe ask for user location permission while searching
     let currentLocation = await Location.getCurrentPositionAsync({});
-    setTargetDist((Math.acos(Math.sin(currentLocation.coords.latitude*0.0174533)*Math.sin(lat2*0.0174533)+Math.cos(currentLocation.coords.latitude*0.0174533)*Math.cos(lat2*0.0174533)*Math.cos((long2*0.0174533)-(currentLocation.coords.longitude*0.0174533)))*3963));
-    setTargetAngle(angleFromCoordinates(currentLocation.coords.latitude, currentLocation.coords.longitude, lat2, long2));
+    sendCurrentLocation(currentLocation.coords.latitude, currentLocation.coords.longitude)
+
+    // Takes a few seconds to get the cordinates back. Possibly send cordinates earlier so we have the initial cords ready but 
+    // that can only happen if we move the location request earlier in the process
+    await getTargetInitialCordinates()
+    console.log(targetLat)
+    console.log(targetLong)
+    setTargetDist((Math.acos(Math.sin(currentLocation.coords.latitude*0.0174533)*Math.sin(targetLat*0.0174533)+Math.cos(currentLocation.coords.latitude*0.0174533)*Math.cos(targetLat*0.0174533)*Math.cos((targetLong*0.0174533)-(currentLocation.coords.longitude*0.0174533)))*3963));
+    setTargetAngle(angleFromCoordinates(currentLocation.coords.latitude, currentLocation.coords.longitude, targetLat, targetLong));
   })();
 }, []);
 

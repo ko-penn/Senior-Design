@@ -1,5 +1,7 @@
 let socket = null;
 let connectionId = null;
+let targetLong = null;
+let targetLat = null;
 
 const connect = (url) => {
     return new Promise((resolve, reject) => {
@@ -71,5 +73,46 @@ const match = (message) => {
   })
 };
 
+// used to wait for cordinates updates
+const waitForTargetDirections = () => {
+  return new Promise((resolve, reject) => { 
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.onmessage = (message) => {
+        let JsonMessage = JSON.parse(message.data);
+        if (JsonMessage.update != null) {
+          targetLat = JsonMessage.update.latitude
+          targetLat = JsonMessage.update.longitude
+          resolve()
+        }
+      }
+    } else {
+      reject()
+    }
+  })
+};
 
-export { connect, send, close, match, connectionId };
+
+const sendCurrentLocation = (latitude, longitude) => {
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      send("{\"action\": \"saveLocation\", \"connectionId\": \"" + connectionId +"\", \"longitude\": \"" + longitude + "\", \"latitude\": \""+ latitude +"\"}")
+    }
+};
+
+const getTargetInitialCordinates = () => {
+  return new Promise((resolve, reject) => { 
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      send("{\"action\": \"getTarget\", \"connectionId\": \"" + connectionId + "\"}")
+    }
+
+    socket.onmessage = (message) => {
+      let JsonMessage = JSON.parse(message.data);
+      if (JsonMessage.update != null) {
+        targetLat = JsonMessage.update.latitude
+        targetLong = JsonMessage.update.longitude
+        resolve()
+      }
+    }
+  })
+}
+
+export { connect, send, close, match, sendCurrentLocation, waitForTargetDirections, getTargetInitialCordinates, connectionId, targetLat, targetLong };
