@@ -15,31 +15,41 @@ import SettingsCamera from './components/SettingsCamera';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { LogBox } from 'react-native';
 
+function Wrapper({ data }){
+  return (
+    $(data).wrap("<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}></KeyboardAvoidingView>")
+  );
+}
+
 function HomeScreen({ navigation }) {
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}>
-      <Start></Start>
-    </KeyboardAvoidingView>
+    <Start>
+      <Wrapper data="Start"></Wrapper>
+    </Start>
   );
 }
 
 function ProfileScreen({ navigation }) {
   return (
-    <Profile></Profile>
+    <Profile>
+      <Wrapper data="Profile"></Wrapper>
+    </Profile>
   );
 }
 
 function SettingsScreen({ navigation }) {
   return (
-    <Settings></Settings>
+    <Settings>
+      <Wrapper data="Settings"></Wrapper>
+    </Settings>
   );
 }
 
 function SettingsCameraScreen({ navigation }) {
   return (
-    <SettingsCamera></SettingsCamera>
+    <SettingsCamera>
+      <Wrapper data="SettingsCamera"></Wrapper>
+    </SettingsCamera>
   );
 }
 
@@ -68,6 +78,7 @@ export default function App() {
           <Login 
             childToParent={childToParent} 
             ver=''>
+            <Wrapper data="Login"></Wrapper>
           </Login>
         </Account>
       </>
@@ -82,6 +93,7 @@ export default function App() {
           <Login 
             childToParent={childToParent} 
             ver='Email verification sent. Please verify before logging in.'>
+            <Wrapper data="Login"></Wrapper>
           </Login>
         </Account>
       </>
@@ -91,7 +103,9 @@ export default function App() {
   else if(data==="accountpress"){
     return(
       <>
-        <Create childToParent={childToParent}></Create>
+        <Create childToParent={childToParent}>
+          <Wrapper data="Create"></Wrapper>
+        </Create>
       </>
     )
   }
