@@ -683,4 +683,34 @@ Items accomplished this meeting:
 
 * Created basics of the poster.
 
-Duration: 1.5 hour
+Duration: 1.5 hours
+
+**3-21-24**
+
+Tasks for this week:
+
+Assignment #5: Abstract, Poster, and more Links - Everyone
+
+Profile page styling, fix Apple keyboard covering text input, found you confirmation - Kevin
+
+Handle end matchmaking/leaving, found you confirmation - Nick
+
+Vacation - Samir
+
+Front camera - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 2.5 hrs
+
+Kody - 3 hrs
+
+Nick - 3 hrs
+
+Samir - 3 hrs
+
+Items accomplished this meeting:
+
+* Assignment #5: Abstract, Poster, and more Links
+
+Duration: 0.5 hours
