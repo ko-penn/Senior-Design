@@ -8,7 +8,7 @@ import Create from './components/Create';
 import Settings from './components/Settings';
 import Profile from './components/Profile';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigationContainerRef, } from '@react-navigation/native';
 import Status from './components/Status';
 import { Account, AccountContext } from "./components/Account"
 import MyCamera from './components/MyCamera';
@@ -41,13 +41,17 @@ function SettingsCamera({ navigation }) {
   );
 }
 
-function Logout({ navigation }) {
+function Logout({ childToParent }) {
   useContext(AccountContext).logout();
-  return (
+  useEffect(() => {
+    childToParent("login");
+  }, []);
+  return(null);
+  /*return (
     <div style={styles.container}>
       <Text style={styles.logoutText}>Logging you out. Please wait.</Text>
     </div>
-  );
+  );*/
 }
 
 export default function App() {
@@ -57,7 +61,7 @@ export default function App() {
   const childToParent = (childdata) => {
     setData(childdata);
   }
-  
+
   if(data==="login"){
     return (
       <>
@@ -103,7 +107,7 @@ export default function App() {
             <Drawer.Screen name="Profile" component={ProfileScreen}/>
             <Drawer.Screen name="Settings" component={SettingsScreen}/>
             <Drawer.Screen name="MyCamera" component={SettingsCamera}/>
-            <Drawer.Screen name="Logout" component={Logout}/>
+            <Drawer.Screen name="Logout" component={() => <Logout childToParent={childToParent}/>}/>
           </Drawer.Navigator>
         </NavigationContainer>
         <Status /></Account>
