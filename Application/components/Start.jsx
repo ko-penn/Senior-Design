@@ -24,7 +24,7 @@ export default function Start() {
       setWarning('Please enter a description first');
     }
     else{
-        await connectWebSocket('websocket url')
+        await connectWebSocket('wss://51yp9d18ye.execute-api.us-east-2.amazonaws.com/production/')
         .then(() => {
           setWarning('');
           console.log(connectionId);
@@ -50,10 +50,12 @@ export default function Start() {
         <TouchableOpacity onPress={() => picPressed("true")}>
           <Image source={require('../assets/Mystery-Man.webp')} style={styles.mysteryMan}></Image>
         </TouchableOpacity>
-        <Text>Take a picture of yourself:</Text>
-        <Text>--------------- OR ---------------</Text>
-        <Text>Enter a description of yourself:</Text>
-        <Text style={styles.warningText}>{warning}</Text>
+        <View style={styles.center}>
+          <Text>Take a picture of yourself:</Text>
+          <Text>--------------- OR ---------------</Text>
+          <Text>Enter a description of yourself:</Text>
+          <Text style={styles.warningText}>{warning}</Text>
+        </View>
         <TextInput
           style={styles.input}
           onChangeText={onChangeDescription}
@@ -90,6 +92,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  center: {
+    alignItems: 'center'
   },
   input: {
     height: 40,
