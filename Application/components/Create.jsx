@@ -33,10 +33,12 @@ export default function Create({childToParent}) {
   return (
     <>
       <View style={styles.container}>
-        <Text style={styles.passwordReqsText}>Password must be at least 8 characters long</Text>
-        <Text style={styles.passwordReqsText}>Password must contain at least one upper case letter</Text>
-        <Text style={styles.passwordReqsText}>Password must contain at least one numeric character</Text>
-        <Text style={styles.passwordReqsText}>Password must contain at least one symbol character</Text>
+        <View>
+          <Text style={styles.passwordReqsText}>Password must be at least 8 characters long</Text>
+          <Text style={styles.passwordReqsText}>Password must contain at least one upper case letter</Text>
+          <Text style={styles.passwordReqsText}>Password must contain at least one numeric character</Text>
+          <Text style={styles.passwordReqsText}>Password must contain at least one symbol character</Text>
+        </View>
         <TextInput
           style={styles.input}
           onChangeText={onChangeEmail}
@@ -64,12 +66,14 @@ export default function Create({childToParent}) {
           value={confirmPassword}
           placeholder="Confirm Password"
         />
-        <Text style={styles.warningText}>{warning}</Text>
+        <View>
+          <Text style={styles.warningText}>{warning}</Text>
+        </View>
         <TouchableOpacity onPress={onSubmit}
         style={styles.createButton}
           accessibilityLabel="Creating Account"
         >
-        <Text style={styles.loginText}>Create</Text>
+          <Text style={styles.loginText}>Create</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => childToParent("login")}
         style={styles.createButton}
@@ -104,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   createButton: {
-    backgroundColor:'#841584', 
+    backgroundColor:'#31a9ce', 
     padding:10, 
     borderRadius:20,
     marginBottom:10,

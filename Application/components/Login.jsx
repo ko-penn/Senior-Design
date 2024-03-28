@@ -49,9 +49,11 @@ export default function Login({childToParent, ver}) {
         >
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
-        <Text style={styles.createtext} onPress={() => childToParent("accountpress")}>
-          Create new account
-        </Text>
+        <View>
+          <Text style={styles.createtext} onPress={() => childToParent("accountpress")}>
+            Create new account
+          </Text>
+        </View>
       </View>
     </>
   );

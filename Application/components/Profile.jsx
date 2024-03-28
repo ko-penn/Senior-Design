@@ -37,7 +37,7 @@ export default function Profile() {
   return (
     <View style={styles.container}>
       {picSection}
-      <View style={styles.infoSection}>
+      <View style={styles.container}>
         <SectionList
           sections={[
             {

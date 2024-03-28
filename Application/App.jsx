@@ -23,33 +23,33 @@ function Wrapper({ data }){
 
 function HomeScreen({ navigation }) {
   return (
-    <Start>
-      <Wrapper data="Start"></Wrapper>
-    </Start>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+      <Start></Start>
+    </KeyboardAvoidingView>
   );
 }
 
 function ProfileScreen({ navigation }) {
   return (
-    <Profile>
-      <Wrapper data="Profile"></Wrapper>
-    </Profile>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+      <Profile></Profile>
+    </KeyboardAvoidingView>
   );
 }
 
 function SettingsScreen({ navigation }) {
   return (
-    <Settings>
-      <Wrapper data="Settings"></Wrapper>
-    </Settings>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+      <Settings></Settings>
+    </KeyboardAvoidingView>
   );
 }
 
 function SettingsCameraScreen({ navigation }) {
   return (
-    <SettingsCamera>
-      <Wrapper data="SettingsCamera"></Wrapper>
-    </SettingsCamera>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+      <SettingsCamera></SettingsCamera>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -75,11 +75,12 @@ export default function App() {
       <>
         <Account>
           <Status />
+          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
           <Login 
             childToParent={childToParent} 
             ver=''>
-            <Wrapper data="Login"></Wrapper>
           </Login>
+          </KeyboardAvoidingView>
         </Account>
       </>
       
@@ -90,11 +91,13 @@ export default function App() {
       <>
         <Account>
           <Status />
+          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
           <Login 
             childToParent={childToParent} 
             ver='Email verification sent. Please verify before logging in.'>
             <Wrapper data="Login"></Wrapper>
           </Login>
+          </KeyboardAvoidingView>
         </Account>
       </>
       
@@ -103,9 +106,9 @@ export default function App() {
   else if(data==="accountpress"){
     return(
       <>
-        <Create childToParent={childToParent}>
-          <Wrapper data="Create"></Wrapper>
-        </Create>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+          <Create childToParent={childToParent}></Create>
+        </KeyboardAvoidingView>
       </>
     )
   }
