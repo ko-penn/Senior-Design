@@ -1,35 +1,59 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
 import { StyleSheet, Text, View, TextInput,TouchableOpacity } from 'react-native';
+import { AccountContext } from "./Account";
 
-export default function Login({childToParent}) {
+export default function Login({childToParent, ver}) {
 
-  const [login, onChangeLogin] = React.useState('');
+  const [email, onChangeEmail] = React.useState('');
   const [password, onChangePassword] = React.useState('');
+  const [warning, setWarning] = React.useState('');
+
+  const { authenticate } = useContext(AccountContext);
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+
+    authenticate(email, password)
+      .then(data => {
+        setWarning("");
+        childToParent("start");
+      })
+      .catch(err => {
+        setWarning("Username/Password are invalid or account has not been confirmed");
+        console.error("Failed to login", err);
+      })
+  };
 
   return (
     <>
       <View style={styles.container}>
+      <Text style={styles.warningText}>{ver}</Text>
         <TextInput
           style={styles.input}
-          onChangeText={onChangeLogin}
-          value={login}
+          onChangeText={onChangeEmail}
+          value={email}
           placeholder="Username"
+          autoFocus = {true}
         />
         <TextInput
           style={styles.input}
           onChangeText={onChangePassword}
+          secureTextEntry={true}
           value={password}
           placeholder="Password"
         />
-        <TouchableOpacity onPress={() => childToParent("start")}
+        <Text style={styles.warningText}>{warning}</Text>
+        <TouchableOpacity onPress={(onSubmit)}
         style={styles.loginButton}
           accessibilityLabel="Logging you in"
         >
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
-        <Text style={styles.createtext} onPress={() => childToParent("accountpress")}>
-          Create new account
-        </Text>
+        <View>
+          <Text style={styles.createtext} onPress={() => childToParent("accountpress")}>
+            Create new account
+          </Text>
+        </View>
       </View>
     </>
   );
@@ -60,10 +84,14 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   loginButton: {
-    backgroundColor:'#841584', 
+    backgroundColor:'#31a9ce', 
     padding:10, 
     borderRadius:20,
     marginBottom:30,
     width:300
+  },
+  warningText: {
+    color: '#FF0000',
+    textAlign: 'center'
   }
 });

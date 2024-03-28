@@ -2,37 +2,21 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, SafeAreaView, Image, Platform } from 'react-native';
 import { useState, useEffect, useRef, useContext } from 'react';
 /*https://www.youtube.com/watch?v=4WPjWK0MYMI*/
-import { Camera, CameraType } from 'expo-camera';
+import { Camera } from 'expo-camera';
 import { useIsFocused } from '@react-navigation/native';
 import Session from './Session';
 import { uploadToS3 } from './s3Upload';
 import Pool from "./UserPool";
 
 
-export default function MyCamera({picPressed}) {
+export default function MyCamera() {
   let cameraRef = useRef();
   const [hasCameraPermission, sethasCameraPermission] = useState();
-  const [type, setType] = useState(CameraType.back);
-  const [webType, setWebType] = useState(CameraType.back);
-  const [webCameraTypes, setWebCameraTypes] = useState([]);
   const [photo, setPhoto] = useState();
   const [sess, setSess] = useState('false');
   const isFocused = useIsFocused();
   const plat = Platform.OS;
 
-  function toggleCameraType() {
-    setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
-  }
-
-  function toggleWebCameraType() {
-    setWebType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
-  }
-
-  if(plat !== 'ios' && plat != 'android'){
-    async () => {
-      setWebCameraTypes(await Camera.getAvailableCameraTypesAsync());
-    }
-  }
 
   const onUse = (event) => {
     setSess("true");
@@ -101,37 +85,21 @@ export default function MyCamera({picPressed}) {
     else if (photo === undefined && isFocused){
       if (plat === 'ios' || plat === 'android'){
         return(
-          <Camera style={styles.camera} ref={cameraRef} type={type}>
+          <Camera style={styles.camera} ref={cameraRef}>
             <View style={styles.buttonContainer}>
-              <Button title="<-" onPress={() => picPressed("false")} />
               <Button title="Take Pic" onPress={takePic} />
-              <Button title="Flip Camera" onPress={toggleCameraType} />
             </View>
           </Camera>
         )
       }
       else{
-        if(webCameraTypes.length > 1){
-          return(
-            <Camera style={styles.camera} ref={cameraRef} type={webType}>
-              <View style={styles.buttonContainer}>
-                <Button title="<-" onPress={() => picPressed("false")} />
-                <Button title="Take Pic" onPress={takePic} />
-                <Button title="Flip Camera" onPress={toggleWebCameraType} />
-              </View>
-            </Camera>
-          )
-        }
-        else{
-          return(
-            <Camera style={styles.compcamera} ref={cameraRef}>
-              <View style={styles.buttonContainer}>
-                <Button title="<-" onPress={() => picPressed("false")} />
-                <Button title="Take Pic" onPress={takePic} />
-              </View>
-            </Camera>
-          )
-        }
+        return(
+          <Camera style={styles.compcamera} ref={cameraRef}>
+            <View style={styles.buttonContainer}>
+              <Button title="Take Pic" onPress={takePic} />
+            </View>
+          </Camera>
+        )
       }
     }
   }

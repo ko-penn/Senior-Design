@@ -439,20 +439,278 @@ Tasks for this week:
 
 Assignment #1 - Test Plan - Everyone
 
-Fill in task from timeline
+Profile and setting pages - Kevin
+
+Figuring out pairing of users using geolocation - Samir and Nick
+
+Page that comes up while game is active - Kody
+
+Fix various bugs and add QoL UI features - Everyone
 
 Total Time spent individually since last meeting:
 
-Kevin - 0 hrs
+Kevin - 3 hrs
 
-Kody - 0 hrs
+Kody - 2 hrs
 
-Nick - 0 hr
+Nick - 3 hr
 
-Samir - 0 hrs
+Samir - 2.5 hrs
 
 Items accomplished this meeting:
 
-*
+* Account Creation Demo
+
+* Sockets progress report and demo
+
+* Troubleshooting geolocation issues
+
+* Updated Github branches
+
+Duration: 1.5 hour
+
+**1-25-24**
+
+Tasks for this week:
+
+Assignment #2 - User Docs - Everyone
+
+Profile and setting pages - Kevin
+
+Figuring out pairing of users - Nick
+
+Storing user data in AWS - Samir
+
+Fix various bugs and add QoL UI features - Everyone - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 2 hrs
+
+Kody - 1.5 hrs
+
+Nick - 1.5 hrs
+
+Samir - 2.5 hrs
+
+Items accomplished this meeting:
+
+* General status updates and demos
 
 Duration: 1 hour
+
+**2-1-24**
+
+Tasks for this week:
+
+Assignment #2 - User Docs - Everyone
+
+Popup after account creation about email as well as listing the password requirements - Kevin
+
+Authorization for Web Sockets - Nick
+
+Storing user data in AWS - Samir
+
+Fix heading to location heading and web location - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 1.5 hrs
+
+Kody - 2 hrs
+
+Nick - 1 hr
+
+Samir - 2 hrs
+
+Items accomplished this meeting:
+
+* General status updates and demos
+
+Duration: 1 hour
+
+**2-8-24**
+
+Tasks for this week:
+
+Assignment #3 - Presentation Slidedeck - Everyone
+
+Popup after account creation about email as well as listing the password requirements - Kevin
+
+Authorization for Web Sockets - Nick
+
+Authenticate user for upload data on S3 - Samir
+
+Fix heading to be only iOS and Android - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 2 hrs
+
+Kody - 2.5 hrs
+
+Nick - 5 hrs
+
+Samir - 4 hrs
+
+Items accomplished this meeting:
+
+* General status updates and demos
+
+* User Docs
+
+Duration: 1.5 hours
+
+**2-15-24**
+
+Tasks for this week:
+
+Assignment #3 - Presentation Slidedeck - Everyone
+
+Profile page styling, fix Apple keyboard covering text input, move the logout button to the hamburger - Kevin
+
+Storing and retrieving target location - Nick
+
+Authenticate user for upload data on S3 - Samir
+
+Camera styling - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 2 hrs
+
+Kody - 1 hr
+
+Nick - 3.5 hrs
+
+Samir - 1 hrs
+
+Items accomplished this meeting:
+
+* General status updates and demos
+
+* Presentation Slidedeck
+
+Duration: 1 hour
+
+**2-22-24**
+
+Tasks for this week:
+
+Assignment #4 - Expo Poster - Everyone
+
+Profile page styling, fix Apple keyboard covering text input, move the logout button to the hamburger - Kevin
+
+Pairing up of users based on location - Nick
+
+Figuring out bundling error - Samir
+
+Figuring out bundling error - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 1 hr
+
+Kody - 0.5 hrs
+
+Nick - 3 hrs
+
+Samir - 4.5 hrs
+
+Items accomplished this meeting:
+
+* General status updates and demos
+
+Duration: 2 hours
+
+**2-29-24**
+
+Tasks for this week:
+
+Assignment #4 - Expo Poster - Everyone
+
+Profile page styling, fix Apple keyboard covering text input - Kevin
+
+Matching users using location, API diagram - Nick
+
+Fix the S3 error - Samir
+
+Camera Styling and other general styling - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 3 hr
+
+Kody - 2 hrs
+
+Nick - 4 hrs
+
+Samir - 4.5 hrs
+
+Items accomplished this meeting:
+
+* General status updates and demos
+
+* Created lists of items we wanted on our poster
+
+Duration: 1 hour
+
+**3-7-24**
+
+Tasks for this week:
+
+Assignment #4 - Expo Poster - Everyone
+
+Profile page styling, fix Apple keyboard covering text input - Kevin
+
+Matching users using location, API diagram - Nick
+
+Fix the S3 error - Samir
+
+Camera Styling and other general styling - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 1 hr
+
+Kody - 1.5 hrs
+
+Nick - 4 hrs
+
+Samir - 3 hrs
+
+Items accomplished this meeting:
+
+* Created basics of the poster.
+
+Duration: 1.5 hours
+
+**3-21-24**
+
+Tasks for this week:
+
+Assignment #5: Abstract, Poster, and more Links - Everyone
+
+Profile page styling, fix Apple keyboard covering text input, found you confirmation - Kevin
+
+Handle end matchmaking/leaving, found you confirmation - Nick
+
+Vacation - Samir
+
+Front camera - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 2.5 hrs
+
+Kody - 3 hrs
+
+Nick - 3 hrs
+
+Samir - 3 hrs
+
+Items accomplished this meeting:
+
+* Assignment #5: Abstract, Poster, and more Links
+
+Duration: 0.5 hours

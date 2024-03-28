@@ -1,75 +1,103 @@
 import 'react-native-gesture-handler';
-import React from 'react';
-import { Text } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import React, { useContext } from 'react';
+import { StyleSheet, Text, KeyboardAvoidingView, Platform } from 'react-native';
 import { useState, useEffect } from 'react';
 import Login from './components/Login';
 import Start from './components/Start';
 import Create from './components/Create';
 import Settings from './components/Settings';
 import Profile from './components/Profile';
-/*https://reactnavigation.org/docs/drawer-based-navigation
-https://reactnavigation.org/docs/drawer-navigator/#installation*/
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import * as Location from 'expo-location';
 import Status from './components/Status';
-import { Account } from "./components/Account"
+import { Account, AccountContext } from "./components/Account";
+import SettingsCamera from './components/SettingsCamera';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { LogBox } from 'react-native';
+
+function Wrapper({ data }){
+  return (
+    $(data).wrap("<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}></KeyboardAvoidingView>")
+  );
+}
 
 function HomeScreen({ navigation }) {
   return (
-    <Start></Start>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+      <Start></Start>
+    </KeyboardAvoidingView>
   );
 }
 
 function ProfileScreen({ navigation }) {
   return (
-    <Profile></Profile>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+      <Profile></Profile>
+    </KeyboardAvoidingView>
   );
 }
 
 function SettingsScreen({ navigation }) {
   return (
-    <Settings></Settings>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+      <Settings></Settings>
+    </KeyboardAvoidingView>
   );
 }
 
+function SettingsCameraScreen({ navigation }) {
+  return (
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+      <SettingsCamera></SettingsCamera>
+    </KeyboardAvoidingView>
+  );
+}
+
+function Logout({ childToParent }) {
+  useContext(AccountContext).logout();
+  useEffect(() => {
+    childToParent("login");
+  }, []);
+  return(null);
+}
+
 export default function App() {
-  const Drawer = createDrawerNavigator();
+  const Tab = createBottomTabNavigator();
   const [data, setData] = useState('login');
+  LogBox.ignoreAllLogs(); //Disables popup warnings on device
 
   const childToParent = (childdata) => {
     setData(childdata);
   }
 
-  const [location, setLocation] = useState(null);
-  const [dist, setDist] = useState(null);
-
-  /*https://www.youtube.com/watch?v=2q-wgobQ-zQ*/
-  useEffect(() => {
-    (async() => {
-      let {status} = await Location.requestForegroundPermissionsAsync()
-      if (status == 'granted'){
-        console.log('grant')
-      } else {
-        console.log('deny')
-      }
-      loc = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest, maximumAge: 10000})
-      setLocation(loc)
-      setDist((Math.acos(Math.sin(loc.coords.latitude*0.0174533)*Math.sin(39.134754*0.0174533)+Math.cos(loc.coords.latitude*0.0174533)*Math.cos(39.134754*0.0174533)*Math.cos((-84.514904*0.0174533)-(loc.coords.longitude*0.0174533)))*3963));
-    })();
-  }, []);
-
-  
   if(data==="login"){
     return (
       <>
-        <Text></Text>
-        <Text>{dist}</Text>
-        <Text>{JSON.stringify(location)}</Text>
         <Account>
           <Status />
-          <Login childToParent={childToParent}></Login>
+          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+          <Login 
+            childToParent={childToParent} 
+            ver=''>
+          </Login>
+          </KeyboardAvoidingView>
+        </Account>
+      </>
+      
+    );
+  }
+  else if (data==="loginVerif"){
+    return (
+      <>
+        <Account>
+          <Status />
+          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+          <Login 
+            childToParent={childToParent} 
+            ver='Email verification sent. Please verify before logging in.'>
+            <Wrapper data="Login"></Wrapper>
+          </Login>
+          </KeyboardAvoidingView>
         </Account>
       </>
       
@@ -78,22 +106,56 @@ export default function App() {
   else if(data==="accountpress"){
     return(
       <>
-        <Create childToParent={childToParent}></Create>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+          <Create childToParent={childToParent}></Create>
+        </KeyboardAvoidingView>
       </>
     )
   }
   else if(data==="start"){
     return (
       <>
+      <Account>
         <NavigationContainer name='nav'>
-          <Drawer.Navigator initialRouteName="Home">
-            <Drawer.Screen name="Home" component={HomeScreen}/>
-            <Drawer.Screen name="Profile" component={ProfileScreen}/>
-            <Drawer.Screen name="Settings" component={SettingsScreen}/>
-          </Drawer.Navigator>
+          <Tab.Navigator
+            initialRouteName="Home"
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ color, size }) => {
+                let iconName;
+
+                if (route.name === 'Home') {
+                  iconName = 'home-outline';
+                } 
+                else if (route.name === 'Profile') {
+                  iconName = 'person-circle-outline';
+                }
+                else if (route.name === 'Settings') {
+                  iconName = 'settings-outline';
+                }
+                else if (route.name === 'Camera') {
+                  iconName = 'camera-outline';
+                }
+                else if (route.name === 'Logout') {
+                  iconName = 'exit-outline';
+                }
+
+                // You can return any component that you like here!
+                return <Ionicons name={iconName} size={size} color={color} />;
+              },
+              tabBarActiveTintColor: '#31a9ce',
+              tabBarInactiveTintColor: 'gray',
+          })}>
+            <Tab.Screen name="Home" component={HomeScreen}/>
+            <Tab.Screen name="Profile" component={ProfileScreen}/>
+            <Tab.Screen name="Settings" component={SettingsScreen}/>
+            <Tab.Screen name="Camera" component={SettingsCameraScreen}/>
+            <Tab.Screen name="Logout" component={() => <Logout childToParent={childToParent}/>}/>
+          </Tab.Navigator>
         </NavigationContainer>
+        <Status /></Account>
       </>
     );
+
   }
   else{
     return (
@@ -103,3 +165,17 @@ export default function App() {
     );
   } 
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logoutText: {
+    textAlign: 'center',
+    fontWeight: '700',
+    fontSize: 16
+  }
+});

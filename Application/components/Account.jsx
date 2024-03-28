@@ -56,6 +56,8 @@ const Account = ( props ) => {
         const user = Pool.getCurrentUser();
         if (user) {
             user.signOut();
+            //v only works on web
+            //window.location.reload(false);
         }
     };
     return( 
