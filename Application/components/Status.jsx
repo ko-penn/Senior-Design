@@ -17,8 +17,9 @@ const Status = () => {
             })
     }, [])
 
-    return <View>{status ?  <TouchableOpacity onPress={logout} style={styles.logout} accessibilityLabel="Logging you out">
-      <Text style={styles.logoutText}>Logout</Text></TouchableOpacity> : <Text>Please login</Text>}</View>
+    // return <View>{status ?  <TouchableOpacity onPress={logout} style={styles.logout} accessibilityLabel="Logging you out">
+    //   <Text style={styles.logoutText}>Logout</Text></TouchableOpacity> : <Text>Please login</Text>}</View>
+    return <View>{!status ? <Text>Please login</Text> : <View></View>}</View>
 };
 
 const styles = StyleSheet.create({
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
       fontSize: 16
     },
     logout: {
-      backgroundColor:'#841584', 
+      backgroundColor:'#31a9ce', 
       padding:10, 
       borderRadius:20,
       marginBottom:30,

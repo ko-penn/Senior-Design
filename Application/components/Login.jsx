@@ -2,13 +2,13 @@ import React, {useState, useContext} from 'react';
 import { StyleSheet, Text, View, TextInput,TouchableOpacity } from 'react-native';
 import { AccountContext } from "./Account";
 
-export default function Login({childToParent}) {
+export default function Login({childToParent, ver}) {
 
   const [email, onChangeEmail] = React.useState('');
   const [password, onChangePassword] = React.useState('');
   const [warning, setWarning] = React.useState('');
 
-  const { authenticate } = useContext(AccountContext)
+  const { authenticate } = useContext(AccountContext);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -27,11 +27,13 @@ export default function Login({childToParent}) {
   return (
     <>
       <View style={styles.container}>
+      <Text style={styles.warningText}>{ver}</Text>
         <TextInput
           style={styles.input}
           onChangeText={onChangeEmail}
           value={email}
           placeholder="Username"
+          autoFocus = {true}
         />
         <TextInput
           style={styles.input}
@@ -47,9 +49,11 @@ export default function Login({childToParent}) {
         >
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
-        <Text style={styles.createtext} onPress={() => childToParent("accountpress")}>
-          Create new account
-        </Text>
+        <View>
+          <Text style={styles.createtext} onPress={() => childToParent("accountpress")}>
+            Create new account
+          </Text>
+        </View>
       </View>
     </>
   );
@@ -80,7 +84,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   loginButton: {
-    backgroundColor:'#841584', 
+    backgroundColor:'#31a9ce', 
     padding:10, 
     borderRadius:20,
     marginBottom:30,

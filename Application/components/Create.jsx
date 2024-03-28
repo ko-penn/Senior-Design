@@ -16,14 +16,12 @@ export default function Create({childToParent}) {
 
       UserPool.signUp(email, password, [], null, (err, data) => {
           if (err) {
-              setWarning('Invalid account information');
-              console.debug(err);
+              setWarning(err.message);
           }
           else{
             setWarning("");
-            childToParent("login");
+            childToParent("loginVerif");
           }
-          console.debug(data);
       });
     }
     else{
@@ -35,11 +33,18 @@ export default function Create({childToParent}) {
   return (
     <>
       <View style={styles.container}>
+        <View>
+          <Text style={styles.passwordReqsText}>Password must be at least 8 characters long</Text>
+          <Text style={styles.passwordReqsText}>Password must contain at least one upper case letter</Text>
+          <Text style={styles.passwordReqsText}>Password must contain at least one numeric character</Text>
+          <Text style={styles.passwordReqsText}>Password must contain at least one symbol character</Text>
+        </View>
         <TextInput
           style={styles.input}
           onChangeText={onChangeEmail}
           value={email}
           placeholder="Email"
+          autoFocus = {true}
         />
         <TextInput
           style={styles.input}
@@ -61,12 +66,14 @@ export default function Create({childToParent}) {
           value={confirmPassword}
           placeholder="Confirm Password"
         />
-        <Text style={styles.warningText}>{warning}</Text>
+        <View>
+          <Text style={styles.warningText}>{warning}</Text>
+        </View>
         <TouchableOpacity onPress={onSubmit}
         style={styles.createButton}
           accessibilityLabel="Creating Account"
         >
-        <Text style={styles.loginText}>Create</Text>
+          <Text style={styles.loginText}>Create</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => childToParent("login")}
         style={styles.createButton}
@@ -101,13 +108,17 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   createButton: {
-    backgroundColor:'#841584', 
+    backgroundColor:'#31a9ce', 
     padding:10, 
     borderRadius:20,
     marginBottom:10,
     width:300
   },
   warningText: {
-    color: '#FF0000'
+    color: '#FF0000',
+    textAlign: 'center',
+  },
+  passwordReqsText: {
+    textAlign: 'center',
   }
 });
