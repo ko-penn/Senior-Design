@@ -6,7 +6,6 @@ let targetLat = null;
 const connect = (url) => {
     return new Promise((resolve, reject) => {
         socket = new WebSocket(url);
-
         socket.onopen = (Response) => {
             send("me")
             console.log(Response)
@@ -36,6 +35,12 @@ const connect = (url) => {
         };
     })
 };
+
+const disconnect = () => {
+  if (socket && socket.readyState === WebSocket.OPEN) { 
+    socket.close()
+  } 
+}
 
 // format for message input variable:
 //{"action": "sendMessage", "message": "Your message that gets send to everyone for now"}
@@ -91,7 +96,6 @@ const waitForTargetDirections = () => {
   })
 };
 
-
 const sendCurrentLocation = (latitude, longitude) => {
     if (socket && socket.readyState === WebSocket.OPEN) {
       send("{\"action\": \"saveLocation\", \"connectionId\": \"" + connectionId +"\", \"longitude\": \"" + longitude + "\", \"latitude\": \""+ latitude +"\"}")
@@ -103,16 +107,42 @@ const getTargetInitialCordinates = () => {
     if (socket && socket.readyState === WebSocket.OPEN) {
       send("{\"action\": \"getTarget\", \"connectionId\": \"" + connectionId + "\"}")
     }
-
     socket.onmessage = (message) => {
-      let JsonMessage = JSON.parse(message.data);
-      if (JsonMessage.update != null) {
-        targetLat = JsonMessage.update.latitude
-        targetLong = JsonMessage.update.longitude
-        resolve()
+      // Just incase if the disconnection happens before the cordinates are received
+      if (message.data == "Match disconnected") {
+        resolve("Match disconnected")
+      } else {
+        let JsonMessage = JSON.parse(message.data);
+        if (JsonMessage.update != null) {
+          targetLat = JsonMessage.update.latitude
+          targetLong = JsonMessage.update.longitude
+          resolve()
+        }
       }
     }
   })
 }
 
-export { connect, send, close, match, sendCurrentLocation, waitForTargetDirections, getTargetInitialCordinates, connectionId, targetLat, targetLong };
+const waitForSessionUpdates = () => {
+  return new Promise((resolve, reject) => {  
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.onmessage = (message) => {
+        if (message.data == "Match disconnected") {
+          resolve("Match disconnected")
+        } else {
+          let JsonMessage = JSON.parse(message.data);
+          if (JsonMessage.update != null) {
+            targetLat = JsonMessage.update.latitude
+            targetLat = JsonMessage.update.longitude
+            resolve("Update", targetLat, targetLong)
+          }
+        }
+      }
+    } else {
+      reject()
+    }
+  })
+}
+
+
+export { connect, disconnect, send, close, match, sendCurrentLocation, waitForTargetDirections, getTargetInitialCordinates, waitForSessionUpdates, connectionId, targetLat, targetLong };
