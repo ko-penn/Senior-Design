@@ -6,6 +6,7 @@ import { useState, useEffect} from 'react';
 import * as Location from 'expo-location';
 import { send as sendWebSocket, waitForTargetDirections, sendCurrentLocation, getTargetInitialCordinates, targetLat, targetLong, disconnect as disconnectFromWebsocket, waitForSessionUpdates} from './WebSocketService';
 import Start from './Start';
+import Pool from "./UserPool";
 
 
 
@@ -52,6 +53,7 @@ export default function Session() {
  /*https://www.youtube.com/watch?v=2q-wgobQ-zQ*/
  useEffect(() => {
   (async () => {
+
     let {status} = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted'){
       console.log('deny')

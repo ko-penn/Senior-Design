@@ -34,7 +34,7 @@ export default function MyCamera({picPressed}) {
     }
   }
 
-  const onUse = (event) => {
+  const onStartMatchmaking = (event) => {
     setSess("true");
     const user= Pool.getCurrentUser().getUsername();
     const base64Photo = photo.base64.replace(/^data:image\/\w+;base64,/, "");
@@ -78,7 +78,7 @@ export default function MyCamera({picPressed}) {
         return (
           <SafeAreaView style={styles.container}>
             <Image style={styles.preview} source={photo} />
-            <Button title="Use" onPress={onUse}/>
+            <Button title="Start Matchmaking" onPress={onStartMatchmaking}/>
             <Button title="Discard" onPress={() => setPhoto(undefined)} />
           </SafeAreaView>
         );
@@ -87,7 +87,7 @@ export default function MyCamera({picPressed}) {
         return (
           <SafeAreaView style={styles.container}>
             <Image style={styles.comppreview} source={photo} />
-            <Button title="Use" onPress={onUse}/>
+            <Button title="Start Matchmaking" onPress={onStartMatchmaking}/>
             <Button title="Discard" onPress={() => setPhoto(undefined)} />
           </SafeAreaView>
         );

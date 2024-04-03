@@ -2,12 +2,32 @@ import { useState } from 'react';
 import React from 'react';
 import { StyleSheet, Text, View, SectionList, Button, TouchableOpacity, Image } from 'react-native';
 import MyCamera from '../components/MyCamera';
+import { getS3Pic } from './s3GetObject';
+import Pool from "./UserPool";
+import { useEffect } from 'react';
 
 export default function Profile() {
 
+  const [profilePic, setProfilePic] = useState()
   const [pic, setPic] = useState(false);
-  const username = "Temp Username";
+  const username = Pool.getCurrentUser().getUsername();
   var picSection = null;
+
+  useEffect(() => {
+    loadImage();
+  }, []); 
+
+  async function loadImage() {
+    try {
+      const user = Pool.getCurrentUser().getUsername();
+      const base64image = await getS3Pic(user); // Wait for the image to be fetched
+      console.log(base64image);
+      setProfilePic(base64image)
+      setPic(true)
+    } catch (error) {
+      console.error("Error fetching image:", error);
+    }
+  }
 
   const picPressed = () => {
     if (pic === false){
@@ -29,7 +49,7 @@ export default function Profile() {
   else if (pic === true){
     picSection = 
       <TouchableOpacity onPress={() => picPressed()}>
-        <Image source={require('../assets/Mystery-Man.webp')} style={styles.mysteryMan}></Image>
+        <Image source={{ uri: profilePic }} style={styles.mysteryMan} />
       </TouchableOpacity>
     ;
   }
