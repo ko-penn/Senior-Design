@@ -1,23 +1,30 @@
+import Pool from "./UserPool";
+
 let socket = null;
 let connectionId = null;
 let targetLong = null;
 let targetLat = null;
+let targetDescription = null;
+let targetUserName = null;
 
-const connect = (url) => {
+const connect = (url, description) => {
     return new Promise((resolve, reject) => {
         socket = new WebSocket(url);
         socket.onopen = (Response) => {
-            send("me")
-            console.log(Response)
-            console.log('Connected to WebSocket server');
+          send("me")
+          console.log(Response)
+          console.log('Connected to WebSocket server');
         };
 
         socket.onmessage = (message) => {
+            const user = Pool.getCurrentUser().getUsername();
+
             let JsonMessage = JSON.parse(message.data);
             console.log(JsonMessage)
             console.log('Recieved message');
             if (JsonMessage.me != null) {
               connectionId = JsonMessage.me.connectionId
+              send("{\"action\": \"setDescription\", \"connectionId\": \"" + connectionId +"\", \"description\": \"" + description +"\", \"userName\": \"" + user +"\"}")
               // Will allow for the await call statement to continue once the connectionId is succesfully assigned
               resolve()
             }
@@ -68,6 +75,8 @@ const match = (message) => {
         let JsonMessage = JSON.parse(message.data);
 
         if (JsonMessage.matchId != null) {
+          targetDescription = JsonMessage.description;
+          targetUserName = JsonMessage.userName;
           resolve(JsonMessage.matchId)
         }
       }
@@ -145,4 +154,4 @@ const waitForSessionUpdates = () => {
 }
 
 
-export { connect, disconnect, send, close, match, sendCurrentLocation, waitForTargetDirections, getTargetInitialCordinates, waitForSessionUpdates, connectionId, targetLat, targetLong };
+export { connect, disconnect, send, close, match, sendCurrentLocation, waitForTargetDirections, getTargetInitialCordinates, waitForSessionUpdates, connectionId, targetLat, targetLong, targetDescription, targetUserName};

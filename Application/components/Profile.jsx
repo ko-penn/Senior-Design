@@ -21,7 +21,6 @@ export default function Profile() {
     try {
       const user = Pool.getCurrentUser().getUsername();
       const base64image = await getS3Pic(user); // Wait for the image to be fetched
-      console.log(base64image);
       setProfilePic(base64image)
       setPic(true)
     } catch (error) {

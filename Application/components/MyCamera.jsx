@@ -113,10 +113,10 @@ export default function MyCamera({picPressed}) {
         );
       }
     }
-    else if (match === true) {
-      return (
-         <Session></Session>
-        );
+  else if (match === 'true') {
+    return (
+        <Session></Session>
+    );
   }
   else if (sess === 'true'){
     return(

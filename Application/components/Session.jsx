@@ -4,9 +4,19 @@ import { StyleSheet, Text, View, Image, Platform, TouchableOpacity } from 'react
 import { Magnetometer} from 'expo-sensors';
 import { useState, useEffect} from 'react';
 import * as Location from 'expo-location';
-import { send as sendWebSocket, waitForTargetDirections, sendCurrentLocation, getTargetInitialCordinates, targetLat, targetLong, disconnect as disconnectFromWebsocket, waitForSessionUpdates} from './WebSocketService';
+import { send as sendWebSocket, 
+  sendCurrentLocation, 
+  getTargetInitialCordinates, 
+  targetLat, 
+  targetLong, 
+  disconnect as disconnectFromWebsocket, 
+  waitForSessionUpdates, 
+  targetDescription, 
+  targetUserName
+} 
+from './WebSocketService';
 import Start from './Start';
-import Pool from "./UserPool";
+import { getS3Pic } from './s3GetObject';
 
 
 
@@ -28,15 +38,17 @@ function testSocket() {
 
 
 export default function Session() {
-  const [disconnected, setDisconnected] = useState(false);
   const [{ x, y, z }, setData] = useState({
     x: 0,
     y: 0,
     z: 0,
   });
+  const [disconnected, setDisconnected] = useState(false);
   const [targetDist, setTargetDist] = useState(null);
   const [targetAngle, setTargetAngle] = useState(null);
   const [targetDirection, setTargetDirection] = useState(null);
+  const [targetPicture, setTargetPicture] = useState(null);
+  const [picExist, setPicExist] = useState(false);
   const [lat2, setLat2] = useState(39.134754);
   const [long2, setLong2] = useState(-84.514904);
   const direction = (deg) => {
@@ -49,10 +61,17 @@ export default function Session() {
   const onFound = () => {
     console.log("I Found You! button pressed");
   };
+  var descriptionSection = null;
 
  /*https://www.youtube.com/watch?v=2q-wgobQ-zQ*/
  useEffect(() => {
   (async () => {
+    if (targetDescription === "undefined") {
+      const base64image = await getS3Pic(targetUserName);
+      setTargetPicture(base64image)
+      setPicExist(true);
+    }
+     
 
     let {status} = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted'){
@@ -76,6 +95,7 @@ export default function Session() {
         setDisconnected(true);
       }
     })
+
     console.log(targetLat)
     console.log(targetLong)
     setTargetDist((Math.acos(Math.sin(currentLocation.coords.latitude*0.0174533)*Math.sin(targetLat*0.0174533)+Math.cos(currentLocation.coords.latitude*0.0174533)*Math.cos(targetLat*0.0174533)*Math.cos((targetLong*0.0174533)-(currentLocation.coords.longitude*0.0174533)))*3963));
@@ -100,6 +120,16 @@ export default function Session() {
   if (disconnected) {
     return <Start />;
   }
+
+  if (picExist === true) {
+    descriptionSection = 
+    <Image source={{ uri: targetPicture }} style={styles.mysteryMan} />
+    ;
+  } else {
+    descriptionSection = 
+    <Text>Target Description: {targetDescription}</Text>
+    ;
+  }
   
   if (plat === 'ios' || plat === 'android'){
     Magnetometer.addListener(result => {
@@ -116,7 +146,7 @@ export default function Session() {
     return (
       <>
         <View style={styles.container}>
-          <Text>Target: {'description or picture of target'}</Text>
+          {descriptionSection}
           <Text>Target is {targetDist} miles to the {targetDirection}</Text>
           <Text>Aiming {myDirection}</Text>
           <TouchableOpacity onPress={onFound} style={styles.foundButton} accessibilityLabel="I Found You!">
@@ -130,7 +160,7 @@ export default function Session() {
     return (
       <>
         <View style={styles.container}>
-          <Text>Target: {'description or picture of target'}</Text>
+        {descriptionSection}
           <Text>Target is {targetDist} miles to the {targetDirection}</Text>
           <TouchableOpacity onPress={onFound} style={styles.foundButton} accessibilityLabel="I Found You!">
             <Text style={styles.foundText}>I Found You!</Text>
@@ -148,6 +178,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  mysteryMan: {
+    width: 200,
+    height:200,
   },
   foundText: {
     color:'#fff',
