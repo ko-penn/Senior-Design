@@ -7,6 +7,8 @@ import { useIsFocused } from '@react-navigation/native';
 import Session from './Session';
 import { uploadToS3 } from './s3Upload';
 import Pool from "./UserPool";
+import { connect as connectWebSocket, send as sendWebSocket, connectionId, match as setMatchingStatus } from './WebSocketService';
+import Spinner from './Spinner';
 
 
 export default function MyCamera({picPressed}) {
@@ -19,6 +21,8 @@ export default function MyCamera({picPressed}) {
   const [sess, setSess] = useState('false');
   const isFocused = useIsFocused();
   const plat = Platform.OS;
+  const [match, setMatch] = useState('false');
+  const [warning, setWarning] = useState('');
 
   function toggleCameraType() {
     setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
@@ -34,8 +38,7 @@ export default function MyCamera({picPressed}) {
     }
   }
 
-  const onUse = (event) => {
-    setSess("true");
+  const onStartMatchmaking = async () => {
     const user= Pool.getCurrentUser().getUsername();
     const base64Photo = photo.base64.replace(/^data:image\/\w+;base64,/, "");
     const {error, key} = uploadToS3(base64Photo, user);
@@ -45,6 +48,23 @@ export default function MyCamera({picPressed}) {
     }
     else{
       console.debug("success", key)
+      await connectWebSocket('wss://51yp9d18ye.execute-api.us-east-2.amazonaws.com/production/')
+      .then(() => {
+        setWarning('');
+        console.log(connectionId);
+        setSess('true');
+      })
+      .catch((error) => {
+        console.error('Failed to establish WebSocket connection:', error);
+        setWarning('Failed to establish WebSocket connection');
+      });
+
+
+      await setMatchingStatus()
+      .then(() => {
+        setMatch('true');
+        console.log("match found")
+      })
     }
   };
 
@@ -78,7 +98,7 @@ export default function MyCamera({picPressed}) {
         return (
           <SafeAreaView style={styles.container}>
             <Image style={styles.preview} source={photo} />
-            <Button title="Use" onPress={onUse}/>
+            <Button title="Start Matchmaking" onPress={onStartMatchmaking}/>
             <Button title="Discard" onPress={() => setPhoto(undefined)} />
           </SafeAreaView>
         );
@@ -87,16 +107,21 @@ export default function MyCamera({picPressed}) {
         return (
           <SafeAreaView style={styles.container}>
             <Image style={styles.comppreview} source={photo} />
-            <Button title="Use" onPress={onUse}/>
+            <Button title="Start Matchmaking" onPress={onStartMatchmaking}/>
             <Button title="Discard" onPress={() => setPhoto(undefined)} />
           </SafeAreaView>
         );
       }
     }
-    else if (photo && sess) {
-      return (
-          <Session></Session>
-        );
+  else if (match === 'true') {
+    return (
+        <Session></Session>
+    );
+  }
+  else if (sess === 'true'){
+    return(
+      <Spinner>Looking for someone else</Spinner>
+    )
   }
     else if (photo === undefined && isFocused){
       if (plat === 'ios' || plat === 'android'){
