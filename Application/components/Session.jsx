@@ -12,7 +12,8 @@ import { send as sendWebSocket,
   disconnect as disconnectFromWebsocket, 
   waitForSessionUpdates, 
   targetDescription, 
-  targetUserName
+  targetUserName,
+  disconnect
 } 
 from './WebSocketService';
 import Start from './Start';
@@ -38,6 +39,7 @@ function testSocket() {
 
 
 export default function Session() {
+  
   const [{ x, y, z }, setData] = useState({
     x: 0,
     y: 0,
@@ -62,6 +64,12 @@ export default function Session() {
     console.log("I Found You! button pressed");
   };
   var descriptionSection = null;
+
+  const stopMatching = async () => {
+    
+    disconnect();
+    setDisconnected(true);
+  }
 
  /*https://www.youtube.com/watch?v=2q-wgobQ-zQ*/
  useEffect(() => {
@@ -152,6 +160,12 @@ export default function Session() {
           <TouchableOpacity onPress={onFound} style={styles.foundButton} accessibilityLabel="I Found You!">
             <Text style={styles.foundText}>I Found You!</Text>
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => stopMatching()}
+          style={styles.matchmakeButton}
+            accessibilityLabel="Cancel"
+          >
+            <Text style={styles.matchmakeText}>Cancel</Text>
+          </TouchableOpacity>
         </View>
       </>
     );
@@ -164,6 +178,12 @@ export default function Session() {
           <Text>Target is {targetDist} miles to the {targetDirection}</Text>
           <TouchableOpacity onPress={onFound} style={styles.foundButton} accessibilityLabel="I Found You!">
             <Text style={styles.foundText}>I Found You!</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => stopMatching()}
+          style={styles.matchmakeButton}
+            accessibilityLabel="Cancel"
+          >
+            <Text style={styles.matchmakeText}>Cancel</Text>
           </TouchableOpacity>
         </View>
       </>
@@ -184,6 +204,19 @@ const styles = StyleSheet.create({
     height:200,
   },
   foundText: {
+    color:'#fff',
+    textAlign: 'center',
+    fontWeight: '700',
+    fontSize: 16
+  },
+  matchmakeButton:{
+    backgroundColor:'#ED5E68', 
+    padding:10, 
+    borderRadius:20,
+    marginBottom:30,
+    width:300
+  },
+  matchmakeText: {
     color:'#fff',
     textAlign: 'center',
     fontWeight: '700',
