@@ -78,8 +78,8 @@ export default function MyCamera({picPressed}) {
         return (
           <SafeAreaView style={styles.container}>
             <Image style={styles.preview} source={photo} />
-            <Button title="Use" onPress={onUse}/>
-            <Button title="Discard" onPress={() => setPhoto(undefined)} />
+            <Button color='#31a9ce' title="Use" onPress={onUse}/>
+            <Button color='#31a9ce' title="Discard" onPress={() => setPhoto(undefined)} />
           </SafeAreaView>
         );
       }
@@ -87,8 +87,8 @@ export default function MyCamera({picPressed}) {
         return (
           <SafeAreaView style={styles.container}>
             <Image style={styles.comppreview} source={photo} />
-            <Button title="Use" onPress={onUse}/>
-            <Button title="Discard" onPress={() => setPhoto(undefined)} />
+            <Button color='#31a9ce' title="Use" onPress={onUse}/>
+            <Button color='#31a9ce' title="Discard" onPress={() => setPhoto(undefined)} />
           </SafeAreaView>
         );
       }
@@ -103,9 +103,9 @@ export default function MyCamera({picPressed}) {
         return(
           <Camera style={styles.camera} ref={cameraRef} type={type}>
             <View style={styles.buttonContainer}>
-              <Button title="<-" onPress={() => picPressed("false")} />
-              <Button title="Take Pic" onPress={takePic} />
-              <Button title="Flip Camera" onPress={toggleCameraType} />
+              <Button color='#31a9ce' title="<-" onPress={() => picPressed("false")} />
+              <Button color='#31a9ce' title="Take Pic" onPress={takePic} />
+              <Button color='#31a9ce' title="Flip Camera" onPress={toggleCameraType} />
             </View>
           </Camera>
         )
@@ -115,19 +115,19 @@ export default function MyCamera({picPressed}) {
           return(
             <Camera style={styles.camera} ref={cameraRef} type={webType}>
               <View style={styles.buttonContainer}>
-                <Button title="<-" onPress={() => picPressed("false")} />
-                <Button title="Take Pic" onPress={takePic} />
-                <Button title="Flip Camera" onPress={toggleWebCameraType} />
+                <Button color='#31a9ce' title="<-" onPress={() => picPressed("false")} />
+                <Button color='#31a9ce' title="Take Pic" onPress={takePic} />
+                <Button color='#31a9ce' title="Flip Camera" onPress={toggleWebCameraType} />
               </View>
             </Camera>
           )
         }
         else{
           return(
-            <Camera style={styles.compcamera} ref={cameraRef}>
+            <Camera buttonStyle style={styles.compcamera} ref={cameraRef}>
               <View style={styles.buttonContainer}>
-                <Button title="<-" onPress={() => picPressed("false")} />
-                <Button title="Take Pic" onPress={takePic} />
+                <Button color='#31a9ce' title="<-" onPress={() => picPressed("false")} />
+                <Button color='#31a9ce' title="Take Pic" onPress={takePic} />
               </View>
             </Camera>
           )
@@ -145,20 +145,22 @@ const styles = StyleSheet.create({
   },
   camera: {
     width: '100%',
+    maxWidth: 500,
     height: '100%',
     alignItems: 'center',
     justifyContent: 'flex-end',
     flexDirection: 'column',
   },
   compcamera: {
-    width: '50%',
+    width: '100%',
+    maxWidth: 500,
     height: '100%',
     alignItems: 'center',
     justifyContent: 'flex-end',
     flexDirection: 'column',
   },
   buttonContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: '#31a9ce',
   },
   preview: {
     flex: 1,
@@ -168,9 +170,5 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'contain',
     transform: [{scaleX: -1}],
-  },
-  imageContainer: {
-    flex: 1,
-    objectFit: 'contain'
   }
 });
