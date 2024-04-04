@@ -714,3 +714,29 @@ Items accomplished this meeting:
 * Assignment #5: Abstract, Poster, and more Links
 
 Duration: 0.5 hours
+
+**3-28-24**
+
+Tasks for this week:
+
+Figure out how to handle finding someone - All
+
+Pushing/notifying disconection - Nick
+
+Get picture displayed - Samir
+
+Fix camera styling - Kody
+
+Total Time spent individually since last meeting:
+
+Kevin - 2 hrs
+
+Kody - 
+
+Nick - 
+
+Samir - 
+
+Items accomplished this meeting:
+
+Duration: 1 hour

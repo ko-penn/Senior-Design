@@ -11,12 +11,11 @@ var SESSIONTOKEN;
 
 AWS.config.region = 'us-east-2';    
 
-//original          
-export const uploadToS3 = async (file, userID) => {
+export const getS3Pic = async (userID) => { 
     const key = userID;
-    
+      
     var cognitoUser = Pool.getCurrentUser();
-
+  
     if (cognitoUser != null) {
       cognitoUser.getSession(function(err, result) {
         if (result) {
@@ -32,7 +31,7 @@ export const uploadToS3 = async (file, userID) => {
         }
       });
     }
-
+  
     AWS.config.credentials.refresh((error) => {
       if (error) {
         console.error(error);
@@ -42,44 +41,31 @@ export const uploadToS3 = async (file, userID) => {
     });
     
     AWS.config.credentials.get(function(){
-
+  
       // Credentials will be available when this function is called.
       ACCESS_KEY = AWS.config.credentials.accessKeyId;
       SECRET_ACCESS_KEY = AWS.config.credentials.secretAccessKey;
       SESSIONTOKEN = AWS.config.credentials.sessionToken;
- 
   
-  });
-
-  var s3 = new AWS.S3({
-    apiVersion: '2006-03-01',
-    params: {Bucket: 'imagestaken'}
-  })
-
-
-    try{
-        s3.upload({
-          Bucket:BUCKET, 
-          Key: key, 
-          Body: file,
-          ContentType: 'image/png',
-        }, function(err, data){
-          if (err) {
-            console.log(err);
-            return alert('There was an error uploading your image: ', err.message);
-          }
-          alert('Uploaded to ' + data.Location);
-        }).on('httpUploadProgress', function (progress){
-          console.log(progress);
-        });
-        return {key};
-    } 
-    catch (error) {
-        console.log(error);
-        return {error};
+  
+    });
+  
+    var s3 = new AWS.S3({
+      apiVersion: '2006-03-01',
+      params: {Bucket: 'imagestaken'}
+    })
+  
+    try {
+      // Convert the s3.getObject operation into a Promise
+      const data = await s3.getObject({
+        Bucket: BUCKET,
+        Key: key,
+      }).promise(); // Add .promise() here to get a Promise
+      
+      return "data:image/png;base64,"+data.Body.toString(); // Return the base64Image string
+    } catch (err) {
+      console.log(err);
+      alert('There was an error getting your image: ', err.message);
+      return ''; // Return an empty string or any other error handling
     }
-    
-}; 
-
-
-
+  }
