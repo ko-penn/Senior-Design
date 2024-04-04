@@ -24,7 +24,7 @@ export default function Start() {
       setWarning('Please enter a description first');
     }
     else{
-        await connectWebSocket('wss://51yp9d18ye.execute-api.us-east-2.amazonaws.com/production/')
+        await connectWebSocket('wss://51yp9d18ye.execute-api.us-east-2.amazonaws.com/production/', description)
         .then(() => {
           setWarning('');
           console.log(connectionId);
