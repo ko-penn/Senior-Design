@@ -53,6 +53,7 @@ export default function Session() {
   const [picExist, setPicExist] = useState(false);
   const [lat2, setLat2] = useState(39.134754);
   const [long2, setLong2] = useState(-84.514904);
+  const [foundText, setFoundText] = useState('');
   const direction = (deg) => {
     if(deg>315 && deg<=45){setTargetDirection("North")}
     else if(deg>45 && deg<=135){setTargetDirection("East")}
@@ -62,6 +63,11 @@ export default function Session() {
   const plat = Platform.OS;
   const onFound = () => {
     console.log("I Found You! button pressed");
+    if (targetDist <= 0.0625){
+      setFoundText("You have successfully found your target!");
+    } else {
+      setFoundText("Are you sure you have found your target?");
+    }
   };
   var descriptionSection = null;
 
@@ -157,6 +163,7 @@ export default function Session() {
           {descriptionSection}
           <Text>Target is {targetDist} miles to the {targetDirection}</Text>
           <Text>Aiming {myDirection}</Text>
+          <Text style={styles.foundText}>{foundText}</Text>
           <TouchableOpacity onPress={onFound} style={styles.foundButton} accessibilityLabel="I Found You!">
             <Text style={styles.foundText}>I Found You!</Text>
           </TouchableOpacity>
@@ -228,5 +235,9 @@ const styles = StyleSheet.create({
     borderRadius:20,
     marginBottom:30,
     width:300
+  },
+  foundText: {
+    textAlign: 'center',
+    fontSize: 16,
   },
 });
