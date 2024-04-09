@@ -1,22 +1,38 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, SafeAreaView, Image, Platform } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView, Image, Platform, TouchableOpacity } from 'react-native';
 import { useState, useEffect, useRef, useContext } from 'react';
 /*https://www.youtube.com/watch?v=4WPjWK0MYMI*/
-import { Camera } from 'expo-camera';
+import { Camera, CameraType } from 'expo-camera';
 import { useIsFocused } from '@react-navigation/native';
 import Session from './Session';
 import { uploadToS3 } from './s3Upload';
 import Pool from "./UserPool";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-
-export default function MyCamera() {
+export default function SettingsCamera() {
   let cameraRef = useRef();
   const [hasCameraPermission, sethasCameraPermission] = useState();
+  const [type, setType] = useState(CameraType.back);
+  const [webType, setWebType] = useState(CameraType.back);
+  const [webCameraTypes, setWebCameraTypes] = useState([]);
   const [photo, setPhoto] = useState();
   const [sess, setSess] = useState('false');
   const isFocused = useIsFocused();
   const plat = Platform.OS;
 
+  function toggleCameraType() {
+    setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
+  }
+
+  function toggleWebCameraType() {
+    setWebType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
+  }
+
+  if(plat !== 'ios' && plat != 'android'){
+    async () => {
+      setWebCameraTypes(await Camera.getAvailableCameraTypesAsync());
+    }
+  }
 
   const onUse = (event) => {
     setSess("true");
@@ -57,48 +73,69 @@ export default function MyCamera() {
         setPhoto(newPhoto);
     };
 
-    if (photo && sess==='false') {
+    if (photo) {
       if (plat === 'ios' || plat === 'android'){
         return (
-          <SafeAreaView style={styles.container}>
+          <View style={styles.containerNEW}>
             <Image style={styles.preview} source={photo} />
-            <Button title="Use" onPress={onUse}/>
-            <Button title="Discard" onPress={() => setPhoto(undefined)} />
-          </SafeAreaView>
+            <View style={styles.buttonContainerNEW}>
+              <TouchableOpacity onPress={() => setPhoto(undefined)} style={styles.buttonBackground}>
+                <Ionicons name={'trash-outline'} color={'#31a9ce'} size={30}/>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={onUse} style={styles.buttonBackground}>
+                <Ionicons name={'play'} color={'#31a9ce'} size={30}/>
+              </TouchableOpacity>
+            </View>
+          </View>
         );
       }
       else{
         return (
-          <SafeAreaView style={styles.container}>
+          <View style={styles.containerNEW}>
             <Image style={styles.comppreview} source={photo} />
-            <Button title="Use" onPress={onUse}/>
-            <Button title="Discard" onPress={() => setPhoto(undefined)} />
-          </SafeAreaView>
+            <View style={styles.buttonContainerNEW}>
+              <TouchableOpacity onPress={() => setPhoto(undefined)} style={styles.buttonBackground}>
+                <Ionicons name={'trash-outline'} color={'#31a9ce'} size={30}/>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={onUse} style={styles.buttonBackground}>
+                <Ionicons name={'play'} color={'#31a9ce'} size={30}/>
+              </TouchableOpacity>
+            </View>
+          </View>
         );
       }
     }
-    else if (photo && sess) {
-      return (
-          <Session></Session>
-        );
-  }
     else if (photo === undefined && isFocused){
       if (plat === 'ios' || plat === 'android'){
         return(
-          <Camera style={styles.camera} ref={cameraRef}>
-            <View style={styles.buttonContainer}>
-              <Button title="Take Pic" onPress={takePic} />
-            </View>
-          </Camera>
+          <View style={styles.containerNEW}>
+            <Camera style={styles.cameraNEW} ref={cameraRef} type={type}>
+              <View style={styles.buttonContainerNEW}>
+                <TouchableOpacity onPress={takePic} style={styles.buttonBackground}>
+                  <Ionicons name={'camera'} color={'#31a9ce'} size={30}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={toggleCameraType} style={styles.buttonBackground}>
+                  <Ionicons name={'camera-reverse'} color={'#31a9ce'} size={30}/>
+                </TouchableOpacity>
+              </View>
+            </Camera>
+          </View>
         )
       }
       else{
         return(
-          <Camera style={styles.compcamera} ref={cameraRef}>
-            <View style={styles.buttonContainer}>
-              <Button title="Take Pic" onPress={takePic} />
-            </View>
-          </Camera>
+          <View style={styles.containerNEW}>
+            <Camera style={styles.compcameraNEW} ref={cameraRef} type={webType}>
+              <View style={styles.buttonContainerNEW}>
+                <TouchableOpacity onPress={takePic} style={styles.buttonBackground}>
+                  <Ionicons name={'camera'} color={'#31a9ce'} size={30}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={toggleWebCameraType} style={styles.buttonBackground}>
+                  <Ionicons name={'camera-reverse'} color={'#31a9ce'} size={30}/>
+                </TouchableOpacity>
+              </View>
+            </Camera>
+          </View>
         )
       }
     }
@@ -106,39 +143,44 @@ export default function MyCamera() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  camera: {
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    flexDirection: 'column',
-  },
-  compcamera: {
-    width: '50%',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    flexDirection: 'column',
-  },
-  buttonContainer: {
-    backgroundColor: '#fff',
-  },
   preview: {
     flex: 1,
     resizeMode: 'contain',
+    transform: [{scaleX: -1}],
   },
   comppreview: {
     flex: 1,
     resizeMode: 'contain',
     transform: [{scaleX: -1}],
   },
-  imageContainer: {
-    flex: 1,
-    objectFit: 'contain'
+  containerNEW: {
+    width: '100%',
+    maxWidth: 800,
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cameraNEW: {
+    width: '100%',
+    maxWidth: 800,
+    height: '100%',
+    justifyContent: 'flex-end',
+  },
+  compcameraNEW: {
+    width: '100%',
+    maxWidth: 800,
+    height: '100%',
+    justifyContent: 'flex-end',
+  },
+  buttonContainerNEW: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 30,
+  },
+  buttonBackground: {
+    backgroundColor: '#fff',
+    padding: 10,
+    borderRadius:10,
+    alignItems: 'center'
   }
 });
