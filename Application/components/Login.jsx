@@ -32,7 +32,7 @@ export default function Login({childToParent, ver}) {
           style={styles.input}
           onChangeText={onChangeEmail}
           value={email}
-          placeholder="Username"
+          placeholder="Email"
           autoFocus = {true}
         />
         <TextInput
