@@ -183,6 +183,7 @@ export default function Session() {
         <View style={styles.container}>
         {descriptionSection}
           <Text>Target is {targetDist} miles to the {targetDirection}</Text>
+          <Text style={styles.foundText}>{foundText}</Text>
           <TouchableOpacity onPress={onFound} style={styles.foundButton} accessibilityLabel="I Found You!">
             <Text style={styles.foundText}>I Found You!</Text>
           </TouchableOpacity>
