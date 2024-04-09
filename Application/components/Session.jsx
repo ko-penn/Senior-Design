@@ -112,7 +112,7 @@ export default function Session() {
 
     console.log(targetLat)
     console.log(targetLong)
-    setTargetDist((Math.acos(Math.sin(currentLocation.coords.latitude*0.0174533)*Math.sin(targetLat*0.0174533)+Math.cos(currentLocation.coords.latitude*0.0174533)*Math.cos(targetLat*0.0174533)*Math.cos((targetLong*0.0174533)-(currentLocation.coords.longitude*0.0174533)))*3963));
+    setTargetDist((Math.acos(Math.sin(currentLocation.coords.latitude*0.0174533)*Math.sin(targetLat*0.0174533)+Math.cos(currentLocation.coords.latitude*0.0174533)*Math.cos(targetLat*0.0174533)*Math.cos((targetLong*0.0174533)-(currentLocation.coords.longitude*0.0174533)))*3963).toFixed(2));
     setTargetAngle(angleFromCoordinates(currentLocation.coords.latitude, currentLocation.coords.longitude, targetLat, targetLong));   
   })();
 }, []);
