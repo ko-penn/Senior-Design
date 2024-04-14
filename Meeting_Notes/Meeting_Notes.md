@@ -731,12 +731,56 @@ Total Time spent individually since last meeting:
 
 Kevin - 2 hrs
 
-Kody - 
+Kody - 2 hrs
 
-Nick - 
+Nick - 2 hrs
 
-Samir - 
+Samir - 2 hrs
 
 Items accomplished this meeting:
 
 Duration: 1 hour
+
+**4-4-24**
+
+Tasks for this week:
+
+Any last minute expo prep
+
+Total Time spent individually since last meeting:
+
+Kevin - 3 hrs
+
+Kody - 3 hrs
+
+Nick - 3 hrs
+
+Samir - 3 hrs
+
+Items accomplished this meeting:
+
+Demo meeting with Professor Niu
+
+Duration: 1 hour
+
+**4-7-24**
+
+Tasks for this week:
+
+Any last minute expo prep
+
+Total Time spent individually since last meeting:
+
+Kevin - 1 hrs
+
+Kody - 1 hrs
+
+Nick - 1 hrs
+
+Samir - 1 hrs
+
+Items accomplished this meeting:
+
+Meeting to organize everything for the expo and do any prep that still needs done
+
+Duration: 0.5 hours
