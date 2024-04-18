@@ -46,10 +46,10 @@ Design Diagrams:
 - [Samir Idris](Individual_Assessments/Fall/Samir_Idris_Individual_Assessment.md)
 
 ## Final Self-Assesment Essays
-- [Kevin Slyh]()
-- [Kody Penn]()
-- [Nick Ferko]()
-- [Samir Idris]()
+- [Kevin Slyh](Individual_Assessments/spring/Kevin_Slyh_Individual_Assessment.md)
+- [Kody Penn](Individual_Assessments/spring/Kody_Penn_Individual_Assessment.md)
+- [Nick Ferko](Individual_Assessments/spring/Nick_Ferko_Individual_Assessment.md)
+- [Samir Idris](Individual_Assessments/spring/Samir_Idris_Individual_Assessment.md)
 
 ## Budget
 There have been no expenses to date. There may be some in the future depending on how intensive our cloud usage ends up being.
