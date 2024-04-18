@@ -22,7 +22,7 @@ This application will serve as a networking tool for instances such as icebreake
 [User Manual](User_Guide.md) 
 
 ## Final Presentation
-[Slideshow](Senior%20Design%20Fall%20Presentation.pdf)
+[Slideshow](Senior%20Design%20Spring%20Presentation.pdf)
 
 ## Expo Poster
 [Expo Poster](ExpoPoster.pdf)
