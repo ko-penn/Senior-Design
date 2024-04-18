@@ -40,10 +40,10 @@ Design Diagrams:
 [Expo Poster](ExpoPoster.pdf)
 
 ## Individual Self-Assessment Essays
-- [Kevin Slyh](Individual_Assessments/Kevin_Slyh_Individual_Assessment.md)
-- [Kody Penn](Individual_Assessments/Kody_Penn_Individual_Assessment.md)
-- [Nick Ferko](Individual_Assessments/Nick_Ferko_Individual_Assessment.md)
-- [Samir Idris](Individual_Assessments/Samir_Idris_Individual_Assessment.md)
+- [Kevin Slyh](Individual_Assessments/Fall/Kevin_Slyh_Individual_Assessment.md)
+- [Kody Penn](Individual_Assessments/Fall/Kody_Penn_Individual_Assessment.md)
+- [Nick Ferko](Individual_Assessments/Fall/Nick_Ferko_Individual_Assessment.md)
+- [Samir Idris](Individual_Assessments/Fall/Samir_Idris_Individual_Assessment.md)
 
 ## Final Self-Assesment Essays
 - [Kevin Slyh]()
