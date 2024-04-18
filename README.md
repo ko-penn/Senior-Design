@@ -40,7 +40,7 @@ This application will serve as a networking tool for instances such as icebreake
 - [Samir Idris](Individual_Assessments/spring/Samir_Idris_Individual_Assessment.md)
 
 ## Summary of Hours
-[Summary of Hour](Meeting_Notes/Summary_of_Each_Semester.md)
+[Summary of Hours](Meeting_Notes/Summary_of_Each_Semester.md)
 
 ## Budget
 There have been no expenses to date. There may be some in the future depending on how intensive our cloud usage ends up being.
