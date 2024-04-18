@@ -1,0 +1,11 @@
+## User must be able to
+- Login
+- Create an account
+- Enter a description
+- Take a picture
+- Start a match
+- Cancel a match
+- Finish a match
+- View profile
+- Change settings
+- Logout
