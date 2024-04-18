@@ -15,8 +15,8 @@ This application will serve as a networking tool for instances such as icebreake
 ## User Interface Specification
 [User Interface Specification]()
 
-## est Plan and Results
-[est Plan and Results]()
+## Test Plan and Results
+[Test Plan and Results]()
 
 ## User Manual
 [User Manual](User_Guide.md) 
