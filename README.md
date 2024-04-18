@@ -34,10 +34,10 @@ This application will serve as a networking tool for instances such as icebreake
 - [Samir Idris](Individual_Assessments/Fall/Samir_Idris_Individual_Assessment.md)
 
 ## Final Self-Assesment Essays
-- [Kevin Slyh](Individual_Assessments/spring/Kevin_Slyh_Individual_Assessment.md)
-- [Kody Penn](Individual_Assessments/spring/Kody_Penn_Individual_Assessment.md)
-- [Nick Ferko](Individual_Assessments/spring/Nick_Ferko_Individual_Assessment.md)
-- [Samir Idris](Individual_Assessments/spring/Samir_Idris_Individual_Assessment.md)
+- [Kevin Slyh](Individual_Assessments/Spring/Kevin_Slyh_Individual_Assessment.md)
+- [Kody Penn](Individual_Assessments/Spring/Kody_Penn_Individual_Assessment.md)
+- [Nick Ferko](Individual_Assessments/Spring/Nick_Ferko_Individual_Assessment.md)
+- [Samir Idris](Individual_Assessments/Spring/Samir_Idris_Individual_Assessment.md)
 
 ## Summary of Hours
 [Summary of Hours](Meeting_Notes/Summary_of_Each_Semester.md)
