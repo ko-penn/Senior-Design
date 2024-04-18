@@ -10,7 +10,7 @@ Step 4: Login using the verified email and the password you created.
 ## **How to play a game**
 Step 1: Login<br/>
 Step 2: Take a picture or enter a description of yourself<br/>
-Step 2a: Take a picture of yourself and select USE<br/>
+Step 2a: Take a picture of yourself<br/>
 Step 2b: Enter a description of your appearance and select start matchmaking<br/>
 Step 3: Using the direction and distance provided, head towards the other player<br/>
 Step 4: Once you have found the other player, aim your device at them and select I Found You!<br/>
