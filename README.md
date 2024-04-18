@@ -13,10 +13,10 @@ This application will serve as a networking tool for instances such as icebreake
 [Project Description](Details.md)
 
 ## User Interface Specification
-[User Interface Specification]()
+[User Interface Specification](User Interface Specification.md)
 
 ## Test Plan and Results
-[Test Plan and Results]()
+[Test Plan and Results](Test Cases.pdf)
 
 ## User Manual
 [User Manual](User_Guide.md) 
